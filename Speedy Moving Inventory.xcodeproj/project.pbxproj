@@ -1,0 +1,535 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D4FB41A11D9D5C4000F111D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FB41A01D9D5C4000F111D8 /* AppDelegate.swift */; };
+		D4FB41A31D9D5C4000F111D8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FB41A21D9D5C4000F111D8 /* ViewController.swift */; };
+		D4FB41A61D9D5C4000F111D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4FB41A41D9D5C4000F111D8 /* Main.storyboard */; };
+		D4FB41A81D9D5C4000F111D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4FB41A71D9D5C4000F111D8 /* Assets.xcassets */; };
+		D4FB41AB1D9D5C4000F111D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4FB41A91D9D5C4000F111D8 /* LaunchScreen.storyboard */; };
+		D4FB41B61D9D5C4000F111D8 /* Speedy_Moving_InventoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FB41B51D9D5C4000F111D8 /* Speedy_Moving_InventoryTests.swift */; };
+		D4FB41C11D9D5C4000F111D8 /* Speedy_Moving_InventoryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FB41C01D9D5C4000F111D8 /* Speedy_Moving_InventoryUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D4FB41B21D9D5C4000F111D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D4FB41951D9D5C4000F111D8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D4FB419C1D9D5C4000F111D8;
+			remoteInfo = "Speedy Moving Inventory";
+		};
+		D4FB41BD1D9D5C4000F111D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D4FB41951D9D5C4000F111D8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D4FB419C1D9D5C4000F111D8;
+			remoteInfo = "Speedy Moving Inventory";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D4FB419D1D9D5C4000F111D8 /* Speedy Moving Inventory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Speedy Moving Inventory.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4FB41A01D9D5C4000F111D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D4FB41A21D9D5C4000F111D8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D4FB41A51D9D5C4000F111D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D4FB41A71D9D5C4000F111D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D4FB41AA1D9D5C4000F111D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D4FB41AC1D9D5C4000F111D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4FB41B11D9D5C4000F111D8 /* Speedy Moving InventoryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Speedy Moving InventoryTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4FB41B51D9D5C4000F111D8 /* Speedy_Moving_InventoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speedy_Moving_InventoryTests.swift; sourceTree = "<group>"; };
+		D4FB41B71D9D5C4000F111D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4FB41BC1D9D5C4000F111D8 /* Speedy Moving InventoryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Speedy Moving InventoryUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4FB41C01D9D5C4000F111D8 /* Speedy_Moving_InventoryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speedy_Moving_InventoryUITests.swift; sourceTree = "<group>"; };
+		D4FB41C21D9D5C4000F111D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D4FB419A1D9D5C4000F111D8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4FB41AE1D9D5C4000F111D8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4FB41B91D9D5C4000F111D8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D4FB41941D9D5C4000F111D8 = {
+			isa = PBXGroup;
+			children = (
+				D4FB419F1D9D5C4000F111D8 /* Speedy Moving Inventory */,
+				D4FB41B41D9D5C4000F111D8 /* Speedy Moving InventoryTests */,
+				D4FB41BF1D9D5C4000F111D8 /* Speedy Moving InventoryUITests */,
+				D4FB419E1D9D5C4000F111D8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D4FB419E1D9D5C4000F111D8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D4FB419D1D9D5C4000F111D8 /* Speedy Moving Inventory.app */,
+				D4FB41B11D9D5C4000F111D8 /* Speedy Moving InventoryTests.xctest */,
+				D4FB41BC1D9D5C4000F111D8 /* Speedy Moving InventoryUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D4FB419F1D9D5C4000F111D8 /* Speedy Moving Inventory */ = {
+			isa = PBXGroup;
+			children = (
+				D4FB41A01D9D5C4000F111D8 /* AppDelegate.swift */,
+				D4FB41A21D9D5C4000F111D8 /* ViewController.swift */,
+				D4FB41A41D9D5C4000F111D8 /* Main.storyboard */,
+				D4FB41A71D9D5C4000F111D8 /* Assets.xcassets */,
+				D4FB41A91D9D5C4000F111D8 /* LaunchScreen.storyboard */,
+				D4FB41AC1D9D5C4000F111D8 /* Info.plist */,
+			);
+			path = "Speedy Moving Inventory";
+			sourceTree = "<group>";
+		};
+		D4FB41B41D9D5C4000F111D8 /* Speedy Moving InventoryTests */ = {
+			isa = PBXGroup;
+			children = (
+				D4FB41B51D9D5C4000F111D8 /* Speedy_Moving_InventoryTests.swift */,
+				D4FB41B71D9D5C4000F111D8 /* Info.plist */,
+			);
+			path = "Speedy Moving InventoryTests";
+			sourceTree = "<group>";
+		};
+		D4FB41BF1D9D5C4000F111D8 /* Speedy Moving InventoryUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D4FB41C01D9D5C4000F111D8 /* Speedy_Moving_InventoryUITests.swift */,
+				D4FB41C21D9D5C4000F111D8 /* Info.plist */,
+			);
+			path = "Speedy Moving InventoryUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D4FB419C1D9D5C4000F111D8 /* Speedy Moving Inventory */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D4FB41C51D9D5C4000F111D8 /* Build configuration list for PBXNativeTarget "Speedy Moving Inventory" */;
+			buildPhases = (
+				D4FB41991D9D5C4000F111D8 /* Sources */,
+				D4FB419A1D9D5C4000F111D8 /* Frameworks */,
+				D4FB419B1D9D5C4000F111D8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Speedy Moving Inventory";
+			productName = "Speedy Moving Inventory";
+			productReference = D4FB419D1D9D5C4000F111D8 /* Speedy Moving Inventory.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D4FB41B01D9D5C4000F111D8 /* Speedy Moving InventoryTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D4FB41C81D9D5C4000F111D8 /* Build configuration list for PBXNativeTarget "Speedy Moving InventoryTests" */;
+			buildPhases = (
+				D4FB41AD1D9D5C4000F111D8 /* Sources */,
+				D4FB41AE1D9D5C4000F111D8 /* Frameworks */,
+				D4FB41AF1D9D5C4000F111D8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D4FB41B31D9D5C4000F111D8 /* PBXTargetDependency */,
+			);
+			name = "Speedy Moving InventoryTests";
+			productName = "Speedy Moving InventoryTests";
+			productReference = D4FB41B11D9D5C4000F111D8 /* Speedy Moving InventoryTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D4FB41BB1D9D5C4000F111D8 /* Speedy Moving InventoryUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D4FB41CB1D9D5C4000F111D8 /* Build configuration list for PBXNativeTarget "Speedy Moving InventoryUITests" */;
+			buildPhases = (
+				D4FB41B81D9D5C4000F111D8 /* Sources */,
+				D4FB41B91D9D5C4000F111D8 /* Frameworks */,
+				D4FB41BA1D9D5C4000F111D8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D4FB41BE1D9D5C4000F111D8 /* PBXTargetDependency */,
+			);
+			name = "Speedy Moving InventoryUITests";
+			productName = "Speedy Moving InventoryUITests";
+			productReference = D4FB41BC1D9D5C4000F111D8 /* Speedy Moving InventoryUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D4FB41951D9D5C4000F111D8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "Speedy Moving Inventory";
+				TargetAttributes = {
+					D4FB419C1D9D5C4000F111D8 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = LL8BGEYCC7;
+						ProvisioningStyle = Automatic;
+					};
+					D4FB41B01D9D5C4000F111D8 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = LL8BGEYCC7;
+						ProvisioningStyle = Automatic;
+						TestTargetID = D4FB419C1D9D5C4000F111D8;
+					};
+					D4FB41BB1D9D5C4000F111D8 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = LL8BGEYCC7;
+						ProvisioningStyle = Automatic;
+						TestTargetID = D4FB419C1D9D5C4000F111D8;
+					};
+				};
+			};
+			buildConfigurationList = D4FB41981D9D5C4000F111D8 /* Build configuration list for PBXProject "Speedy Moving Inventory" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D4FB41941D9D5C4000F111D8;
+			productRefGroup = D4FB419E1D9D5C4000F111D8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D4FB419C1D9D5C4000F111D8 /* Speedy Moving Inventory */,
+				D4FB41B01D9D5C4000F111D8 /* Speedy Moving InventoryTests */,
+				D4FB41BB1D9D5C4000F111D8 /* Speedy Moving InventoryUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D4FB419B1D9D5C4000F111D8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4FB41AB1D9D5C4000F111D8 /* LaunchScreen.storyboard in Resources */,
+				D4FB41A81D9D5C4000F111D8 /* Assets.xcassets in Resources */,
+				D4FB41A61D9D5C4000F111D8 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4FB41AF1D9D5C4000F111D8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4FB41BA1D9D5C4000F111D8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D4FB41991D9D5C4000F111D8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4FB41A31D9D5C4000F111D8 /* ViewController.swift in Sources */,
+				D4FB41A11D9D5C4000F111D8 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4FB41AD1D9D5C4000F111D8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4FB41B61D9D5C4000F111D8 /* Speedy_Moving_InventoryTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4FB41B81D9D5C4000F111D8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4FB41C11D9D5C4000F111D8 /* Speedy_Moving_InventoryUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D4FB41B31D9D5C4000F111D8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D4FB419C1D9D5C4000F111D8 /* Speedy Moving Inventory */;
+			targetProxy = D4FB41B21D9D5C4000F111D8 /* PBXContainerItemProxy */;
+		};
+		D4FB41BE1D9D5C4000F111D8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D4FB419C1D9D5C4000F111D8 /* Speedy Moving Inventory */;
+			targetProxy = D4FB41BD1D9D5C4000F111D8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D4FB41A41D9D5C4000F111D8 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D4FB41A51D9D5C4000F111D8 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D4FB41A91D9D5C4000F111D8 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D4FB41AA1D9D5C4000F111D8 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D4FB41C31D9D5C4000F111D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D4FB41C41D9D5C4000F111D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D4FB41C61D9D5C4000F111D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = LL8BGEYCC7;
+				INFOPLIST_FILE = "Speedy Moving Inventory/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ranchosoftware.speedymovingiventory.Speedy-Moving-Inventory";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		D4FB41C71D9D5C4000F111D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = LL8BGEYCC7;
+				INFOPLIST_FILE = "Speedy Moving Inventory/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ranchosoftware.speedymovingiventory.Speedy-Moving-Inventory";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		D4FB41C91D9D5C4000F111D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = LL8BGEYCC7;
+				INFOPLIST_FILE = "Speedy Moving InventoryTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ranchosoftware.speedymovingiventory.Speedy-Moving-InventoryTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Speedy Moving Inventory.app/Speedy Moving Inventory";
+			};
+			name = Debug;
+		};
+		D4FB41CA1D9D5C4000F111D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = LL8BGEYCC7;
+				INFOPLIST_FILE = "Speedy Moving InventoryTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ranchosoftware.speedymovingiventory.Speedy-Moving-InventoryTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Speedy Moving Inventory.app/Speedy Moving Inventory";
+			};
+			name = Release;
+		};
+		D4FB41CC1D9D5C4000F111D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = LL8BGEYCC7;
+				INFOPLIST_FILE = "Speedy Moving InventoryUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ranchosoftware.speedymovingiventory.Speedy-Moving-InventoryUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "Speedy Moving Inventory";
+			};
+			name = Debug;
+		};
+		D4FB41CD1D9D5C4000F111D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = LL8BGEYCC7;
+				INFOPLIST_FILE = "Speedy Moving InventoryUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ranchosoftware.speedymovingiventory.Speedy-Moving-InventoryUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "Speedy Moving Inventory";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D4FB41981D9D5C4000F111D8 /* Build configuration list for PBXProject "Speedy Moving Inventory" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4FB41C31D9D5C4000F111D8 /* Debug */,
+				D4FB41C41D9D5C4000F111D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D4FB41C51D9D5C4000F111D8 /* Build configuration list for PBXNativeTarget "Speedy Moving Inventory" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4FB41C61D9D5C4000F111D8 /* Debug */,
+				D4FB41C71D9D5C4000F111D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D4FB41C81D9D5C4000F111D8 /* Build configuration list for PBXNativeTarget "Speedy Moving InventoryTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4FB41C91D9D5C4000F111D8 /* Debug */,
+				D4FB41CA1D9D5C4000F111D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D4FB41CB1D9D5C4000F111D8 /* Build configuration list for PBXNativeTarget "Speedy Moving InventoryUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4FB41CC1D9D5C4000F111D8 /* Debug */,
+				D4FB41CD1D9D5C4000F111D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D4FB41951D9D5C4000F111D8 /* Project object */;
+}
