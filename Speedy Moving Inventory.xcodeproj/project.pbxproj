@@ -7,13 +7,69 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C369F58009086C19ADE703D /* Pods_Speedy_Moving_InventoryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D5E86CCB511977E0825AC42 /* Pods_Speedy_Moving_InventoryUITests.framework */; };
+		4EAB19067F8684FA85011258 /* Pods_Speedy_Moving_InventoryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4834717705B1009B5812BB56 /* Pods_Speedy_Moving_InventoryTests.framework */; };
+		D40EA3911DA5458C00F6A314 /* ItemClaimViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40EA3901DA5458C00F6A314 /* ItemClaimViewController.swift */; };
+		D40EA3931DA551D900F6A314 /* ItemDetailsImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40EA3921DA551D900F6A314 /* ItemDetailsImageCell.swift */; };
+		D40EA3951DA56D2200F6A314 /* SignOffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40EA3941DA56D2200F6A314 /* SignOffViewController.swift */; };
+		D41234961DA2BBBA00432404 /* LoginCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41234951DA2BBBA00432404 /* LoginCredentials.swift */; };
+		D41AE2DA1D9ECD7900313693 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D41AE2D91D9ECD7900313693 /* MBProgressHUD.m */; };
+		D41F27D91DA2C7B90079EB19 /* beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = D41F27D31DA2C7B90079EB19 /* beep.wav */; };
+		D41F27DA1DA2C7B90079EB19 /* checkout_beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = D41F27D41DA2C7B90079EB19 /* checkout_beep.wav */; };
+		D41F27DB1DA2C7B90079EB19 /* error.wav in Resources */ = {isa = PBXBuildFile; fileRef = D41F27D51DA2C7B90079EB19 /* error.wav */; };
+		D41F27DC1DA2C7B90079EB19 /* negative_beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = D41F27D61DA2C7B90079EB19 /* negative_beep.wav */; };
+		D41F27DD1DA2C7B90079EB19 /* negative_beep_2.wav in Resources */ = {isa = PBXBuildFile; fileRef = D41F27D71DA2C7B90079EB19 /* negative_beep_2.wav */; };
+		D41F27DE1DA2C7B90079EB19 /* positive_beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = D41F27D81DA2C7B90079EB19 /* positive_beep.wav */; };
+		D41F27E01DA2F2F30079EB19 /* EditItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41F27DF1DA2F2F30079EB19 /* EditItemViewController.swift */; };
+		D43137F51D9EBBAD00B5A4B9 /* BundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43137F41D9EBBAD00B5A4B9 /* BundleExtension.swift */; };
+		D44511911D9ECDE600D683A4 /* Hud.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44511901D9ECDE600D683A4 /* Hud.swift */; };
+		D45F4D531DA2C0FB00E34CB0 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45F4D521DA2C0FB00E34CB0 /* Utility.swift */; };
+		D45F4D5C1DA2C58E00E34CB0 /* QRCodeReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45F4D551DA2C58E00E34CB0 /* QRCodeReader.swift */; };
+		D45F4D5D1DA2C58E00E34CB0 /* QRCodeReaderResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45F4D561DA2C58E00E34CB0 /* QRCodeReaderResult.swift */; };
+		D45F4D5E1DA2C58E00E34CB0 /* QRCodeReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45F4D571DA2C58E00E34CB0 /* QRCodeReaderViewController.swift */; };
+		D45F4D5F1DA2C58E00E34CB0 /* QRCodeReaderViewControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45F4D581DA2C58E00E34CB0 /* QRCodeReaderViewControllerBuilder.swift */; };
+		D45F4D601DA2C58E00E34CB0 /* ReaderOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45F4D591DA2C58E00E34CB0 /* ReaderOverlayView.swift */; };
+		D45F4D611DA2C58E00E34CB0 /* SwitchCameraButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45F4D5A1DA2C58E00E34CB0 /* SwitchCameraButton.swift */; };
+		D45F4D621DA2C58E00E34CB0 /* ToggleTorchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45F4D5B1DA2C58E00E34CB0 /* ToggleTorchButton.swift */; };
+		D46727711D9F00930010A1DD /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D467276A1D9F00930010A1DD /* ForgotPasswordViewController.swift */; };
+		D46727731D9F00930010A1DD /* JobsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D467276C1D9F00930010A1DD /* JobsViewController.swift */; };
+		D46727741D9F00930010A1DD /* JobTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D467276D1D9F00930010A1DD /* JobTableViewCell.swift */; };
+		D46727761D9F00930010A1DD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D467276F1D9F00930010A1DD /* LoginViewController.swift */; };
+		D46727771D9F00930010A1DD /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46727701D9F00930010A1DD /* MainNavigationController.swift */; };
+		D46727791D9F00A60010A1DD /* JobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46727781D9F00A60010A1DD /* JobViewController.swift */; };
+		D467277B1D9F0D320010A1DD /* JobSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = D467277A1D9F0D320010A1DD /* JobSummary.swift */; };
+		D467277D1D9F0D430010A1DD /* JobDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = D467277C1D9F0D430010A1DD /* JobDetails.swift */; };
+		D467277F1D9F1F230010A1DD /* ItemCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D467277E1D9F1F230010A1DD /* ItemCollectionCell.swift */; };
+		D483D2271DA1790900ED7DE5 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D483D2261DA1790900ED7DE5 /* Colors.swift */; };
+		D49C076B1DA05BDA004A1D28 /* IJobConsumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49C076A1DA05BDA004A1D28 /* IJobConsumer.swift */; };
+		D4EA9A361DA1A47E00D983A3 /* SortByViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA9A351DA1A47E00D983A3 /* SortByViewController.swift */; };
+		D4EC5CB41D9D7FCF00DB00D3 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EC5CAC1D9D7FCF00DB00D3 /* Address.swift */; };
+		D4EC5CB51D9D7FCF00DB00D3 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EC5CAD1D9D7FCF00DB00D3 /* Company.swift */; };
+		D4EC5CB61D9D7FCF00DB00D3 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EC5CAE1D9D7FCF00DB00D3 /* Item.swift */; };
+		D4EC5CB71D9D7FCF00DB00D3 /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EC5CAF1D9D7FCF00DB00D3 /* Job.swift */; };
+		D4EC5CB81D9D7FCF00DB00D3 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EC5CB01D9D7FCF00DB00D3 /* Model.swift */; };
+		D4EC5CB91D9D7FCF00DB00D3 /* Signature.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EC5CB11D9D7FCF00DB00D3 /* Signature.swift */; };
+		D4EC5CBA1D9D7FCF00DB00D3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EC5CB21D9D7FCF00DB00D3 /* User.swift */; };
+		D4EC5CBB1D9D7FCF00DB00D3 /* UserIdMapEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EC5CB31D9D7FCF00DB00D3 /* UserIdMapEntry.swift */; };
+		D4EC5CBF1D9D8CDA00DB00D3 /* ResponsiveTextFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EC5CBE1D9D8CDA00DB00D3 /* ResponsiveTextFieldViewController.swift */; };
+		D4EC5CC71D9D90FA00DB00D3 /* ButtonStyler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EC5CC11D9D90FA00DB00D3 /* ButtonStyler.swift */; };
+		D4EC5CC81D9D90FA00DB00D3 /* PhoneNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EC5CC21D9D90FA00DB00D3 /* PhoneNumberFormatter.swift */; };
+		D4EC5CCB1D9D90FA00DB00D3 /* TextUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EC5CC51D9D90FA00DB00D3 /* TextUtils.swift */; };
+		D4EC5CCC1D9D90FA00DB00D3 /* UiUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EC5CC61D9D90FA00DB00D3 /* UiUtility.swift */; };
+		D4EC5CD21D9DA56E00DB00D3 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EC5CD11D9DA56E00DB00D3 /* StringExtension.swift */; };
+		D4EC5CD41D9DAEE800DB00D3 /* FirebaseDataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EC5CD31D9DAEE800DB00D3 /* FirebaseDataObject.swift */; };
+		D4F2729B1DA8670D005CB3DF /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F2729A1DA8670D005CB3DF /* SpinnerViewController.swift */; };
+		D4F2729D1DA867EA005CB3DF /* SpinnerTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F2729C1DA867EA005CB3DF /* SpinnerTableCell.swift */; };
 		D4FB41A11D9D5C4000F111D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FB41A01D9D5C4000F111D8 /* AppDelegate.swift */; };
-		D4FB41A31D9D5C4000F111D8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FB41A21D9D5C4000F111D8 /* ViewController.swift */; };
 		D4FB41A61D9D5C4000F111D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4FB41A41D9D5C4000F111D8 /* Main.storyboard */; };
 		D4FB41A81D9D5C4000F111D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4FB41A71D9D5C4000F111D8 /* Assets.xcassets */; };
 		D4FB41AB1D9D5C4000F111D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4FB41A91D9D5C4000F111D8 /* LaunchScreen.storyboard */; };
 		D4FB41B61D9D5C4000F111D8 /* Speedy_Moving_InventoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FB41B51D9D5C4000F111D8 /* Speedy_Moving_InventoryTests.swift */; };
 		D4FB41C11D9D5C4000F111D8 /* Speedy_Moving_InventoryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FB41C01D9D5C4000F111D8 /* Speedy_Moving_InventoryUITests.swift */; };
+		D4FB41CF1D9D652C00F111D8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4FB41CE1D9D652C00F111D8 /* GoogleService-Info.plist */; };
+		D4FB41D01D9D652C00F111D8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4FB41CE1D9D652C00F111D8 /* GoogleService-Info.plist */; };
+		D4FB41D11D9D652C00F111D8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4FB41CE1D9D652C00F111D8 /* GoogleService-Info.plist */; };
+		F72B6C6B7B79C284C7A003F6 /* Pods_Speedy_Moving_Inventory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F061648B38F000F7D612AAF /* Pods_Speedy_Moving_Inventory.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,9 +90,69 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F061648B38F000F7D612AAF /* Pods_Speedy_Moving_Inventory.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Speedy_Moving_Inventory.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		362EB53213A19B708A2D0EA1 /* Pods-Speedy Moving Inventory.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Speedy Moving Inventory.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Speedy Moving Inventory/Pods-Speedy Moving Inventory.debug.xcconfig"; sourceTree = "<group>"; };
+		45CF8DAA29699DCF006FC012 /* Pods-Speedy Moving Inventory.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Speedy Moving Inventory.release.xcconfig"; path = "Pods/Target Support Files/Pods-Speedy Moving Inventory/Pods-Speedy Moving Inventory.release.xcconfig"; sourceTree = "<group>"; };
+		4834717705B1009B5812BB56 /* Pods_Speedy_Moving_InventoryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Speedy_Moving_InventoryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D5E86CCB511977E0825AC42 /* Pods_Speedy_Moving_InventoryUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Speedy_Moving_InventoryUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		847D9E6369FA9E97F38E8679 /* Pods-Speedy Moving InventoryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Speedy Moving InventoryTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Speedy Moving InventoryTests/Pods-Speedy Moving InventoryTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9F5F3BA87A6EF6E88D31D8B6 /* Pods-Speedy Moving InventoryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Speedy Moving InventoryTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Speedy Moving InventoryTests/Pods-Speedy Moving InventoryTests.release.xcconfig"; sourceTree = "<group>"; };
+		C57C765AED8907456C3EF644 /* Pods-Speedy Moving InventoryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Speedy Moving InventoryUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Speedy Moving InventoryUITests/Pods-Speedy Moving InventoryUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		D40EA3901DA5458C00F6A314 /* ItemClaimViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemClaimViewController.swift; sourceTree = "<group>"; };
+		D40EA3921DA551D900F6A314 /* ItemDetailsImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailsImageCell.swift; sourceTree = "<group>"; };
+		D40EA3941DA56D2200F6A314 /* SignOffViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignOffViewController.swift; sourceTree = "<group>"; };
+		D41234951DA2BBBA00432404 /* LoginCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCredentials.swift; sourceTree = "<group>"; };
+		D41AE2D81D9ECD7900313693 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		D41AE2D91D9ECD7900313693 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		D41F27D31DA2C7B90079EB19 /* beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beep.wav; sourceTree = "<group>"; };
+		D41F27D41DA2C7B90079EB19 /* checkout_beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = checkout_beep.wav; sourceTree = "<group>"; };
+		D41F27D51DA2C7B90079EB19 /* error.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = error.wav; sourceTree = "<group>"; };
+		D41F27D61DA2C7B90079EB19 /* negative_beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = negative_beep.wav; sourceTree = "<group>"; };
+		D41F27D71DA2C7B90079EB19 /* negative_beep_2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = negative_beep_2.wav; sourceTree = "<group>"; };
+		D41F27D81DA2C7B90079EB19 /* positive_beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = positive_beep.wav; sourceTree = "<group>"; };
+		D41F27DF1DA2F2F30079EB19 /* EditItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditItemViewController.swift; sourceTree = "<group>"; };
+		D43137F41D9EBBAD00B5A4B9 /* BundleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BundleExtension.swift; sourceTree = "<group>"; };
+		D44511901D9ECDE600D683A4 /* Hud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hud.swift; sourceTree = "<group>"; };
+		D44511931D9ECF1900D683A4 /* SpeedyMovingInventory-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SpeedyMovingInventory-Bridging-Header.h"; sourceTree = "<group>"; };
+		D45F4D521DA2C0FB00E34CB0 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		D45F4D551DA2C58E00E34CB0 /* QRCodeReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeReader.swift; sourceTree = "<group>"; };
+		D45F4D561DA2C58E00E34CB0 /* QRCodeReaderResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeReaderResult.swift; sourceTree = "<group>"; };
+		D45F4D571DA2C58E00E34CB0 /* QRCodeReaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeReaderViewController.swift; sourceTree = "<group>"; };
+		D45F4D581DA2C58E00E34CB0 /* QRCodeReaderViewControllerBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeReaderViewControllerBuilder.swift; sourceTree = "<group>"; };
+		D45F4D591DA2C58E00E34CB0 /* ReaderOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReaderOverlayView.swift; sourceTree = "<group>"; };
+		D45F4D5A1DA2C58E00E34CB0 /* SwitchCameraButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchCameraButton.swift; sourceTree = "<group>"; };
+		D45F4D5B1DA2C58E00E34CB0 /* ToggleTorchButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToggleTorchButton.swift; sourceTree = "<group>"; };
+		D467276A1D9F00930010A1DD /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		D467276C1D9F00930010A1DD /* JobsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobsViewController.swift; sourceTree = "<group>"; };
+		D467276D1D9F00930010A1DD /* JobTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobTableViewCell.swift; sourceTree = "<group>"; };
+		D467276F1D9F00930010A1DD /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D46727701D9F00930010A1DD /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
+		D46727781D9F00A60010A1DD /* JobViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobViewController.swift; sourceTree = "<group>"; };
+		D467277A1D9F0D320010A1DD /* JobSummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobSummary.swift; sourceTree = "<group>"; };
+		D467277C1D9F0D430010A1DD /* JobDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobDetails.swift; sourceTree = "<group>"; };
+		D467277E1D9F1F230010A1DD /* ItemCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCollectionCell.swift; sourceTree = "<group>"; };
+		D483D2261DA1790900ED7DE5 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		D49C076A1DA05BDA004A1D28 /* IJobConsumer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IJobConsumer.swift; sourceTree = "<group>"; };
+		D4EA9A351DA1A47E00D983A3 /* SortByViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortByViewController.swift; sourceTree = "<group>"; };
+		D4EC5CAC1D9D7FCF00DB00D3 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		D4EC5CAD1D9D7FCF00DB00D3 /* Company.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
+		D4EC5CAE1D9D7FCF00DB00D3 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		D4EC5CAF1D9D7FCF00DB00D3 /* Job.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Job.swift; sourceTree = "<group>"; };
+		D4EC5CB01D9D7FCF00DB00D3 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		D4EC5CB11D9D7FCF00DB00D3 /* Signature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Signature.swift; sourceTree = "<group>"; };
+		D4EC5CB21D9D7FCF00DB00D3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D4EC5CB31D9D7FCF00DB00D3 /* UserIdMapEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserIdMapEntry.swift; sourceTree = "<group>"; };
+		D4EC5CBE1D9D8CDA00DB00D3 /* ResponsiveTextFieldViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponsiveTextFieldViewController.swift; sourceTree = "<group>"; };
+		D4EC5CC11D9D90FA00DB00D3 /* ButtonStyler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonStyler.swift; sourceTree = "<group>"; };
+		D4EC5CC21D9D90FA00DB00D3 /* PhoneNumberFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneNumberFormatter.swift; sourceTree = "<group>"; };
+		D4EC5CC51D9D90FA00DB00D3 /* TextUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextUtils.swift; sourceTree = "<group>"; };
+		D4EC5CC61D9D90FA00DB00D3 /* UiUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UiUtility.swift; sourceTree = "<group>"; };
+		D4EC5CD11D9DA56E00DB00D3 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		D4EC5CD31D9DAEE800DB00D3 /* FirebaseDataObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseDataObject.swift; sourceTree = "<group>"; };
+		D4F2729A1DA8670D005CB3DF /* SpinnerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
+		D4F2729C1DA867EA005CB3DF /* SpinnerTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerTableCell.swift; sourceTree = "<group>"; };
 		D4FB419D1D9D5C4000F111D8 /* Speedy Moving Inventory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Speedy Moving Inventory.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4FB41A01D9D5C4000F111D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D4FB41A21D9D5C4000F111D8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D4FB41A51D9D5C4000F111D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D4FB41A71D9D5C4000F111D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4FB41AA1D9D5C4000F111D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +163,8 @@
 		D4FB41BC1D9D5C4000F111D8 /* Speedy Moving InventoryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Speedy Moving InventoryUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4FB41C01D9D5C4000F111D8 /* Speedy_Moving_InventoryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speedy_Moving_InventoryUITests.swift; sourceTree = "<group>"; };
 		D4FB41C21D9D5C4000F111D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4FB41CE1D9D652C00F111D8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EC53BF087B6B614F98DF8B7C /* Pods-Speedy Moving InventoryUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Speedy Moving InventoryUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Speedy Moving InventoryUITests/Pods-Speedy Moving InventoryUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +172,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F72B6C6B7B79C284C7A003F6 /* Pods_Speedy_Moving_Inventory.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +180,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EAB19067F8684FA85011258 /* Pods_Speedy_Moving_InventoryTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,19 +188,139 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C369F58009086C19ADE703D /* Pods_Speedy_Moving_InventoryUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0ADD84C0ED98E14008E574FC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				362EB53213A19B708A2D0EA1 /* Pods-Speedy Moving Inventory.debug.xcconfig */,
+				45CF8DAA29699DCF006FC012 /* Pods-Speedy Moving Inventory.release.xcconfig */,
+				847D9E6369FA9E97F38E8679 /* Pods-Speedy Moving InventoryTests.debug.xcconfig */,
+				9F5F3BA87A6EF6E88D31D8B6 /* Pods-Speedy Moving InventoryTests.release.xcconfig */,
+				C57C765AED8907456C3EF644 /* Pods-Speedy Moving InventoryUITests.debug.xcconfig */,
+				EC53BF087B6B614F98DF8B7C /* Pods-Speedy Moving InventoryUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A15215B6C29E71B61C324C13 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1F061648B38F000F7D612AAF /* Pods_Speedy_Moving_Inventory.framework */,
+				4834717705B1009B5812BB56 /* Pods_Speedy_Moving_InventoryTests.framework */,
+				5D5E86CCB511977E0825AC42 /* Pods_Speedy_Moving_InventoryUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D41AE2D71D9ECD7900313693 /* MBProgressHud */ = {
+			isa = PBXGroup;
+			children = (
+				D44511901D9ECDE600D683A4 /* Hud.swift */,
+				D41AE2D81D9ECD7900313693 /* MBProgressHUD.h */,
+				D41AE2D91D9ECD7900313693 /* MBProgressHUD.m */,
+			);
+			path = MBProgressHud;
+			sourceTree = "<group>";
+		};
+		D41F27D21DA2C7B90079EB19 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				D41F27D31DA2C7B90079EB19 /* beep.wav */,
+				D41F27D41DA2C7B90079EB19 /* checkout_beep.wav */,
+				D41F27D51DA2C7B90079EB19 /* error.wav */,
+				D41F27D61DA2C7B90079EB19 /* negative_beep.wav */,
+				D41F27D71DA2C7B90079EB19 /* negative_beep_2.wav */,
+				D41F27D81DA2C7B90079EB19 /* positive_beep.wav */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
+		D45F4D541DA2C58E00E34CB0 /* QRCodeReader */ = {
+			isa = PBXGroup;
+			children = (
+				D45F4D551DA2C58E00E34CB0 /* QRCodeReader.swift */,
+				D45F4D561DA2C58E00E34CB0 /* QRCodeReaderResult.swift */,
+				D45F4D571DA2C58E00E34CB0 /* QRCodeReaderViewController.swift */,
+				D45F4D581DA2C58E00E34CB0 /* QRCodeReaderViewControllerBuilder.swift */,
+				D45F4D591DA2C58E00E34CB0 /* ReaderOverlayView.swift */,
+				D45F4D5A1DA2C58E00E34CB0 /* SwitchCameraButton.swift */,
+				D45F4D5B1DA2C58E00E34CB0 /* ToggleTorchButton.swift */,
+			);
+			path = QRCodeReader;
+			sourceTree = "<group>";
+		};
+		D46727691D9F00930010A1DD /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D41234951DA2BBBA00432404 /* LoginCredentials.swift */,
+				D467276A1D9F00930010A1DD /* ForgotPasswordViewController.swift */,
+				D467277C1D9F0D430010A1DD /* JobDetails.swift */,
+				D467277A1D9F0D320010A1DD /* JobSummary.swift */,
+				D467276C1D9F00930010A1DD /* JobsViewController.swift */,
+				D467276D1D9F00930010A1DD /* JobTableViewCell.swift */,
+				D46727781D9F00A60010A1DD /* JobViewController.swift */,
+				D467276F1D9F00930010A1DD /* LoginViewController.swift */,
+				D46727701D9F00930010A1DD /* MainNavigationController.swift */,
+				D467277E1D9F1F230010A1DD /* ItemCollectionCell.swift */,
+				D49C076A1DA05BDA004A1D28 /* IJobConsumer.swift */,
+				D4EA9A351DA1A47E00D983A3 /* SortByViewController.swift */,
+				D41F27DF1DA2F2F30079EB19 /* EditItemViewController.swift */,
+				D40EA3901DA5458C00F6A314 /* ItemClaimViewController.swift */,
+				D40EA3921DA551D900F6A314 /* ItemDetailsImageCell.swift */,
+				D40EA3941DA56D2200F6A314 /* SignOffViewController.swift */,
+				D4F2729A1DA8670D005CB3DF /* SpinnerViewController.swift */,
+				D4F2729C1DA867EA005CB3DF /* SpinnerTableCell.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		D4EC5CAB1D9D7FCF00DB00D3 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				D4EC5CAC1D9D7FCF00DB00D3 /* Address.swift */,
+				D4EC5CAD1D9D7FCF00DB00D3 /* Company.swift */,
+				D4EC5CAE1D9D7FCF00DB00D3 /* Item.swift */,
+				D4EC5CAF1D9D7FCF00DB00D3 /* Job.swift */,
+				D4EC5CB01D9D7FCF00DB00D3 /* Model.swift */,
+				D4EC5CB11D9D7FCF00DB00D3 /* Signature.swift */,
+				D4EC5CB21D9D7FCF00DB00D3 /* User.swift */,
+				D4EC5CB31D9D7FCF00DB00D3 /* UserIdMapEntry.swift */,
+				D4EC5CD31D9DAEE800DB00D3 /* FirebaseDataObject.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		D4EC5CC01D9D90FA00DB00D3 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				D4EC5CD11D9DA56E00DB00D3 /* StringExtension.swift */,
+				D4EC5CC11D9D90FA00DB00D3 /* ButtonStyler.swift */,
+				D4EC5CC21D9D90FA00DB00D3 /* PhoneNumberFormatter.swift */,
+				D4EC5CC51D9D90FA00DB00D3 /* TextUtils.swift */,
+				D4EC5CC61D9D90FA00DB00D3 /* UiUtility.swift */,
+				D43137F41D9EBBAD00B5A4B9 /* BundleExtension.swift */,
+				D483D2261DA1790900ED7DE5 /* Colors.swift */,
+				D45F4D521DA2C0FB00E34CB0 /* Utility.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 		D4FB41941D9D5C4000F111D8 = {
 			isa = PBXGroup;
 			children = (
+				D44511931D9ECF1900D683A4 /* SpeedyMovingInventory-Bridging-Header.h */,
 				D4FB419F1D9D5C4000F111D8 /* Speedy Moving Inventory */,
 				D4FB41B41D9D5C4000F111D8 /* Speedy Moving InventoryTests */,
 				D4FB41BF1D9D5C4000F111D8 /* Speedy Moving InventoryUITests */,
 				D4FB419E1D9D5C4000F111D8 /* Products */,
+				0ADD84C0ED98E14008E574FC /* Pods */,
+				A15215B6C29E71B61C324C13 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,8 +337,15 @@
 		D4FB419F1D9D5C4000F111D8 /* Speedy Moving Inventory */ = {
 			isa = PBXGroup;
 			children = (
+				D41F27D21DA2C7B90079EB19 /* Sounds */,
+				D45F4D541DA2C58E00E34CB0 /* QRCodeReader */,
+				D46727691D9F00930010A1DD /* ViewControllers */,
+				D41AE2D71D9ECD7900313693 /* MBProgressHud */,
+				D4EC5CC01D9D90FA00DB00D3 /* Utility */,
+				D4EC5CBE1D9D8CDA00DB00D3 /* ResponsiveTextFieldViewController.swift */,
+				D4EC5CAB1D9D7FCF00DB00D3 /* model */,
+				D4FB41CE1D9D652C00F111D8 /* GoogleService-Info.plist */,
 				D4FB41A01D9D5C4000F111D8 /* AppDelegate.swift */,
-				D4FB41A21D9D5C4000F111D8 /* ViewController.swift */,
 				D4FB41A41D9D5C4000F111D8 /* Main.storyboard */,
 				D4FB41A71D9D5C4000F111D8 /* Assets.xcassets */,
 				D4FB41A91D9D5C4000F111D8 /* LaunchScreen.storyboard */,
@@ -132,9 +379,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D4FB41C51D9D5C4000F111D8 /* Build configuration list for PBXNativeTarget "Speedy Moving Inventory" */;
 			buildPhases = (
+				155440997ECF4015D6A243D1 /* [CP] Check Pods Manifest.lock */,
 				D4FB41991D9D5C4000F111D8 /* Sources */,
 				D4FB419A1D9D5C4000F111D8 /* Frameworks */,
 				D4FB419B1D9D5C4000F111D8 /* Resources */,
+				A9A69B67F840D386D3887BFE /* [CP] Embed Pods Frameworks */,
+				722C65FD6F39D267E59CDFE1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -149,9 +399,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D4FB41C81D9D5C4000F111D8 /* Build configuration list for PBXNativeTarget "Speedy Moving InventoryTests" */;
 			buildPhases = (
+				92BD398C85B2FF107B773C8F /* [CP] Check Pods Manifest.lock */,
 				D4FB41AD1D9D5C4000F111D8 /* Sources */,
 				D4FB41AE1D9D5C4000F111D8 /* Frameworks */,
 				D4FB41AF1D9D5C4000F111D8 /* Resources */,
+				D3C2D285E65F095541753E1A /* [CP] Embed Pods Frameworks */,
+				29F328FEB276B3CFD83C585D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -167,9 +420,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D4FB41CB1D9D5C4000F111D8 /* Build configuration list for PBXNativeTarget "Speedy Moving InventoryUITests" */;
 			buildPhases = (
+				7CCDA86C645228FB9B8DBB30 /* [CP] Check Pods Manifest.lock */,
 				D4FB41B81D9D5C4000F111D8 /* Sources */,
 				D4FB41B91D9D5C4000F111D8 /* Frameworks */,
 				D4FB41BA1D9D5C4000F111D8 /* Resources */,
+				F7051405367265CF5838358E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -188,23 +443,26 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Speedy Moving Inventory";
 				TargetAttributes = {
 					D4FB419C1D9D5C4000F111D8 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = LL8BGEYCC7;
+						DevelopmentTeam = 8H2LF725X8;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 					D4FB41B01D9D5C4000F111D8 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = LL8BGEYCC7;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						TestTargetID = D4FB419C1D9D5C4000F111D8;
 					};
 					D4FB41BB1D9D5C4000F111D8 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = LL8BGEYCC7;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						TestTargetID = D4FB419C1D9D5C4000F111D8;
 					};
@@ -235,9 +493,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D41F27DA1DA2C7B90079EB19 /* checkout_beep.wav in Resources */,
+				D41F27DE1DA2C7B90079EB19 /* positive_beep.wav in Resources */,
+				D41F27D91DA2C7B90079EB19 /* beep.wav in Resources */,
 				D4FB41AB1D9D5C4000F111D8 /* LaunchScreen.storyboard in Resources */,
+				D41F27DC1DA2C7B90079EB19 /* negative_beep.wav in Resources */,
+				D4FB41CF1D9D652C00F111D8 /* GoogleService-Info.plist in Resources */,
 				D4FB41A81D9D5C4000F111D8 /* Assets.xcassets in Resources */,
 				D4FB41A61D9D5C4000F111D8 /* Main.storyboard in Resources */,
+				D41F27DD1DA2C7B90079EB19 /* negative_beep_2.wav in Resources */,
+				D41F27DB1DA2C7B90079EB19 /* error.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +510,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4FB41D01D9D652C00F111D8 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,18 +518,186 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4FB41D11D9D652C00F111D8 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		155440997ECF4015D6A243D1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		29F328FEB276B3CFD83C585D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Speedy Moving InventoryTests/Pods-Speedy Moving InventoryTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		722C65FD6F39D267E59CDFE1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Speedy Moving Inventory/Pods-Speedy Moving Inventory-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7CCDA86C645228FB9B8DBB30 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		92BD398C85B2FF107B773C8F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A9A69B67F840D386D3887BFE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Speedy Moving Inventory/Pods-Speedy Moving Inventory-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D3C2D285E65F095541753E1A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Speedy Moving InventoryTests/Pods-Speedy Moving InventoryTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F7051405367265CF5838358E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Speedy Moving InventoryUITests/Pods-Speedy Moving InventoryUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D4FB41991D9D5C4000F111D8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4FB41A31D9D5C4000F111D8 /* ViewController.swift in Sources */,
+				D45F4D621DA2C58E00E34CB0 /* ToggleTorchButton.swift in Sources */,
+				D467277B1D9F0D320010A1DD /* JobSummary.swift in Sources */,
+				D4EC5CD41D9DAEE800DB00D3 /* FirebaseDataObject.swift in Sources */,
+				D45F4D5F1DA2C58E00E34CB0 /* QRCodeReaderViewControllerBuilder.swift in Sources */,
+				D45F4D5C1DA2C58E00E34CB0 /* QRCodeReader.swift in Sources */,
+				D45F4D601DA2C58E00E34CB0 /* ReaderOverlayView.swift in Sources */,
+				D41F27E01DA2F2F30079EB19 /* EditItemViewController.swift in Sources */,
+				D46727791D9F00A60010A1DD /* JobViewController.swift in Sources */,
+				D467277D1D9F0D430010A1DD /* JobDetails.swift in Sources */,
+				D483D2271DA1790900ED7DE5 /* Colors.swift in Sources */,
+				D4EC5CCB1D9D90FA00DB00D3 /* TextUtils.swift in Sources */,
+				D44511911D9ECDE600D683A4 /* Hud.swift in Sources */,
+				D4EC5CB41D9D7FCF00DB00D3 /* Address.swift in Sources */,
+				D4EC5CB91D9D7FCF00DB00D3 /* Signature.swift in Sources */,
+				D45F4D5D1DA2C58E00E34CB0 /* QRCodeReaderResult.swift in Sources */,
+				D4EC5CBB1D9D7FCF00DB00D3 /* UserIdMapEntry.swift in Sources */,
+				D40EA3911DA5458C00F6A314 /* ItemClaimViewController.swift in Sources */,
+				D4EC5CB51D9D7FCF00DB00D3 /* Company.swift in Sources */,
+				D4EC5CC71D9D90FA00DB00D3 /* ButtonStyler.swift in Sources */,
+				D45F4D611DA2C58E00E34CB0 /* SwitchCameraButton.swift in Sources */,
+				D4EC5CB61D9D7FCF00DB00D3 /* Item.swift in Sources */,
+				D4EC5CB71D9D7FCF00DB00D3 /* Job.swift in Sources */,
+				D45F4D531DA2C0FB00E34CB0 /* Utility.swift in Sources */,
+				D4EC5CD21D9DA56E00DB00D3 /* StringExtension.swift in Sources */,
+				D45F4D5E1DA2C58E00E34CB0 /* QRCodeReaderViewController.swift in Sources */,
+				D46727761D9F00930010A1DD /* LoginViewController.swift in Sources */,
+				D4EC5CCC1D9D90FA00DB00D3 /* UiUtility.swift in Sources */,
+				D41AE2DA1D9ECD7900313693 /* MBProgressHUD.m in Sources */,
+				D40EA3931DA551D900F6A314 /* ItemDetailsImageCell.swift in Sources */,
 				D4FB41A11D9D5C4000F111D8 /* AppDelegate.swift in Sources */,
+				D4EC5CBF1D9D8CDA00DB00D3 /* ResponsiveTextFieldViewController.swift in Sources */,
+				D4EC5CBA1D9D7FCF00DB00D3 /* User.swift in Sources */,
+				D46727711D9F00930010A1DD /* ForgotPasswordViewController.swift in Sources */,
+				D4EA9A361DA1A47E00D983A3 /* SortByViewController.swift in Sources */,
+				D4F2729D1DA867EA005CB3DF /* SpinnerTableCell.swift in Sources */,
+				D4F2729B1DA8670D005CB3DF /* SpinnerViewController.swift in Sources */,
+				D4EC5CC81D9D90FA00DB00D3 /* PhoneNumberFormatter.swift in Sources */,
+				D41234961DA2BBBA00432404 /* LoginCredentials.swift in Sources */,
+				D49C076B1DA05BDA004A1D28 /* IJobConsumer.swift in Sources */,
+				D4EC5CB81D9D7FCF00DB00D3 /* Model.swift in Sources */,
+				D46727731D9F00930010A1DD /* JobsViewController.swift in Sources */,
+				D46727741D9F00930010A1DD /* JobTableViewCell.swift in Sources */,
+				D46727771D9F00930010A1DD /* MainNavigationController.swift in Sources */,
+				D40EA3951DA56D2200F6A314 /* SignOffViewController.swift in Sources */,
+				D43137F51D9EBBAD00B5A4B9 /* BundleExtension.swift in Sources */,
+				D467277F1D9F1F230010A1DD /* ItemCollectionCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +770,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -363,6 +798,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "SpeedyMovingInventory-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -385,6 +821,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -404,6 +841,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "SpeedyMovingInventory-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -411,12 +849,35 @@
 		};
 		D4FB41C61D9D5C4000F111D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 362EB53213A19B708A2D0EA1 /* Pods-Speedy Moving Inventory.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = LL8BGEYCC7;
+				DEVELOPMENT_TEAM = 8H2LF725X8;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FBSDKLoginKit\"",
+					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks/frameworks\"",
+					"\"${PODS_ROOT}/FirebaseAuth/Frameworks/frameworks\"",
+					"\"${PODS_ROOT}/FirebaseCrash/Frameworks/frameworks\"",
+					"\"${PODS_ROOT}/FirebaseDatabase/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks/frameworks\"",
+					"\"${PODS_ROOT}/FirebaseStorage/Frameworks/frameworks\"",
+					"\"${PODS_ROOT}/FirebaseUI/FirebaseUIFrameworks/FirebaseAuthUI/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseUI/FirebaseUIFrameworks/FirebaseDatabaseUI/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseUI/FirebaseUIFrameworks/FirebaseFacebookAuthUI/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseUI/FirebaseUIFrameworks/FirebaseGoogleAuthUI/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleAppUtilities/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleAuthUtilities/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleInterchangeUtilities/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleNetworkingUtilities/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleSignIn/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleSymbolUtilities/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleUtilities/Frameworks\"",
+				);
 				INFOPLIST_FILE = "Speedy Moving Inventory/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ranchosoftware.speedymovingiventory.Speedy-Moving-Inventory";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ranchosoftware.speedymovinginventory;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -424,12 +885,14 @@
 		};
 		D4FB41C71D9D5C4000F111D8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 45CF8DAA29699DCF006FC012 /* Pods-Speedy Moving Inventory.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = LL8BGEYCC7;
+				DEVELOPMENT_TEAM = 8H2LF725X8;
 				INFOPLIST_FILE = "Speedy Moving Inventory/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ranchosoftware.speedymovingiventory.Speedy-Moving-Inventory";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ranchosoftware.speedymovinginventory;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -437,6 +900,7 @@
 		};
 		D4FB41C91D9D5C4000F111D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 847D9E6369FA9E97F38E8679 /* Pods-Speedy Moving InventoryTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -452,6 +916,7 @@
 		};
 		D4FB41CA1D9D5C4000F111D8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F5F3BA87A6EF6E88D31D8B6 /* Pods-Speedy Moving InventoryTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -467,6 +932,7 @@
 		};
 		D4FB41CC1D9D5C4000F111D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C57C765AED8907456C3EF644 /* Pods-Speedy Moving InventoryUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = LL8BGEYCC7;
@@ -481,6 +947,7 @@
 		};
 		D4FB41CD1D9D5C4000F111D8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EC53BF087B6B614F98DF8B7C /* Pods-Speedy Moving InventoryUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = LL8BGEYCC7;
@@ -512,6 +979,7 @@
 				D4FB41C71D9D5C4000F111D8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D4FB41C81D9D5C4000F111D8 /* Build configuration list for PBXNativeTarget "Speedy Moving InventoryTests" */ = {
 			isa = XCConfigurationList;
@@ -520,6 +988,7 @@
 				D4FB41CA1D9D5C4000F111D8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D4FB41CB1D9D5C4000F111D8 /* Build configuration list for PBXNativeTarget "Speedy Moving InventoryUITests" */ = {
 			isa = XCConfigurationList;
@@ -528,6 +997,7 @@
 				D4FB41CD1D9D5C4000F111D8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

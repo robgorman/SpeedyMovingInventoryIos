@@ -7,15 +7,36 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
 
+  var user : User?
+  var currentUser : User?{
+    set {
+      user = newValue;
+      FIRDatabase.database().reference(withPath:"companies/" + (newValue?.companyKey)!)
+        .observe(FIRDataEventType.value, with: {(snapshot) in
+          self.currentCompany = Company(snapshot)
+        })
+    }
+    get {
+      return user;
+    }
+  }
+
+  var currentCategory : Category?
+  
+  var currentCompany : Company?
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
+    
+    // init firebase
+    FIRApp.configure();
     return true
   }
 
@@ -39,6 +60,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func applicationWillTerminate(_ application: UIApplication) {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+  }
+
+  func resetCredentials(){
+    let defaults = UserDefaults.standard
+    defaults.set(nil, forKey:"email")
+    defaults.set(nil, forKey:"password")
+    
+  }
+  
+  func saveCredentials(_ credentials : LoginCredentials){
+    let defaults = UserDefaults.standard
+    defaults.set(credentials.email, forKey:"email")
+    defaults.set(credentials.password, forKey:"password")
+  }
+  
+  func getSavedCredentials() -> LoginCredentials?{
+    let defaults = UserDefaults.standard
+    let email = defaults.string(forKey: "email")
+    let password = defaults.string(forKey: "password")
+    if (email != nil){
+      return LoginCredentials(email: email!, password: password!)
+    } else {
+      return nil
+    }
+    
   }
 
 
