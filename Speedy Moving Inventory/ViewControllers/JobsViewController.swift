@@ -183,7 +183,7 @@ class JobsViewController : UIViewController, UITableViewDelegate, UITableViewDat
       .queryOrdered(byChild: "jobNumber");
     
     dateFormatter = DateFormatter();
-    dateFormatter.dateFormat = "M/d/yy";
+    dateFormatter.dateFormat = "MM/dd/yy";
     
     
     if !appDelegate.initializationDone {

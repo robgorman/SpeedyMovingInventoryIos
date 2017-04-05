@@ -69,7 +69,7 @@ class Item : FirebaseDataObject {
     numberOfPads : Int,
     uidOfCreator : String,
     desc : String,
-    monetaryValue : Int,
+    monetaryValue : Float,
     weightLbs : Float,
     volume : Float,
     specialHandling : String,
@@ -150,7 +150,7 @@ class Item : FirebaseDataObject {
   func getClaimActiveInverse() -> Bool {return ((claimActiveInverse?.boolValue)!)}
   func getIsScanned() -> Bool {return ((isScanned?.boolValue)!)}
   func getIsScannedInverse() -> Bool {return ((isScannedInverse?.boolValue)!)}
-  func getMonetaryValue() -> Int {return ((monetaryValue?.intValue)!)}
+  func getMonetaryValue() -> Float {return ((monetaryValue?.floatValue)!)}
   func getMonetaryValueInverse() -> Int {return ((monetaryValueInverse?.intValue)!)}
   func getNumberOfPads() -> Int {return ((numberOfPads?.intValue)!)}
   func getNumberOfPadsInverse() -> Int {return ((numberOfPadsInverse?.intValue)!)}
@@ -197,7 +197,7 @@ class Item : FirebaseDataObject {
     self.weightLbsInverse = NSNumber(value: -weightLbs);
   }
   
-  func setMonetaryValue(value : Int){
+  func setMonetaryValue(value : Float){
     self.monetaryValue = NSNumber(value: value)
     self.monetaryValueInverse = NSNumber(value :  -value);
   }

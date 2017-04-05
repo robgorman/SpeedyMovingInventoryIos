@@ -58,5 +58,9 @@ class Utility{
     }
   }
 
+  class func monetaryValueFromWeight(weight : Float) -> Float{
+    let monetaryValue = 0.60 * weight
+    return monetaryValue
+  }
   
 }

@@ -110,7 +110,9 @@ class EditItemViewController : UIViewController,  UITextViewDelegate,  UICollect
     }
     let user  = delegate.currentUser
     
-    let item = Item(category: category!, numberOfPads: 0, uidOfCreator: (user?.uid)!, desc: "", monetaryValue: 20, weightLbs: 5.0, volume: 1.0, specialHandling: "", jobKey: jobKey, packedBy: .Owner, isBox: false,
+    let item = Item(category: category!, numberOfPads: 0, uidOfCreator: (user?.uid)!, desc: "",
+                    monetaryValue: Utility.monetaryValueFromWeight(weight: 5.0),
+                    weightLbs: 5.0, volume: 1.0, specialHandling: "", jobKey: jobKey, packedBy: .Owner, isBox: false,
                     itemWasCreatedOutOfPhase : itemWasCreatedOutOfPhase,
                     createDateTime: Date())
     
@@ -341,6 +343,7 @@ class EditItemViewController : UIViewController,  UITextViewDelegate,  UICollect
     }
     labelWeight.text = String(format:"%.0f", weight) + " lbs."
     item.setWeightLbs(weightLbs: weight);
+    item.setMonetaryValue(value: Utility.monetaryValueFromWeight(weight: weight))
 
   }
   

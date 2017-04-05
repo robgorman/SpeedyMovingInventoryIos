@@ -362,7 +362,11 @@ class JobDetails : UIViewController,UICollectionViewDelegateFlowLayout, UICollec
     cell.sortLabel.isHidden = false;
     switch currentQuery {
     case 0:
-      cell.sortLabel.text = "$" + String(item.getMonetaryValue())
+      let currencyFormatter = NumberFormatter();
+      currencyFormatter.maximumFractionDigits = 2
+      currencyFormatter.numberStyle = NumberFormatter.Style.currency
+      
+      cell.sortLabel.text = currencyFormatter.string(from: NSNumber(value:item.getMonetaryValue()))
     case 1: //volume
       let s = String(item.getVolume()) + " ft3"
       cell.sortLabel.attributedText = TextUtils.formFt3Superscript(text: s)

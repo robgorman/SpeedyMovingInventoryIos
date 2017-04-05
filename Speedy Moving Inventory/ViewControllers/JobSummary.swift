@@ -34,7 +34,7 @@ class JobSummary : UIViewController, IJobConsumer{
   @IBOutlet weak var totalWeight  : UILabel! 
   @IBOutlet weak var totalNumberDamagedItems  : UILabel!
   
-  var tValue : Int = 0
+  var tValue : Float = 0.0
   var tNumberOfPads : Int = 0
   var tVolume : Float = 0.0
   var tWeightLbs : Float = 0.0
@@ -78,7 +78,7 @@ class JobSummary : UIViewController, IJobConsumer{
     }
     
     let currencyFormatter = NumberFormatter()
-    currencyFormatter.maximumFractionDigits = 0;
+    currencyFormatter.maximumFractionDigits = 2;
     currencyFormatter.numberStyle = NumberFormatter.Style.currency
     let nsnumber = NSNumber(value: tValue)
     totalValue.text = currencyFormatter.string( from:nsnumber);

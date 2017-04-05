@@ -48,7 +48,7 @@ class SignOffViewController: UIViewController, UITextFieldDelegate, UITextViewDe
   var entryLifecycle : Lifecycle!
   var storageInTransit : Bool!
   var totalItems : Int!
-  var totalValue : Int!
+  var totalValue : Float!
   var totalPads : Int!
   var totalVolumeCubicFeet : Float!
   var totalWeight : Float!
@@ -159,9 +159,17 @@ class SignOffViewController: UIViewController, UITextFieldDelegate, UITextViewDe
   }
   
   func constructSummary() -> String {
+    let currencyFormatter = NumberFormatter();
+    currencyFormatter.maximumFractionDigits = 2
+    currencyFormatter.numberStyle = NumberFormatter.Style.currency
+    
+    let nsnumber = NSNumber(value: totalValue!);
+    let totalValueString = currencyFormatter.string(from: nsnumber);
     let ti = totalItems
     var summary = "• " + String(ti!);
-    summary = summary + " Items valued at $" + String( totalValue!) + "\n";
+    
+    
+    summary = summary + " Items valued at " + totalValueString! + "\n";
     summary = summary + "• " + "Move destination is " ;
     summary = summary + moveDestination() + "\n";
     return summary
