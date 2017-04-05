@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,16 +18,18 @@
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="speedy_logo" translatesAutoresizingMaskIntoConstraints="NO" id="gN2-t9-hBc">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="speedy_logo" translatesAutoresizingMaskIntoConstraints="NO" id="gN2-t9-hBc">
+                                <rect key="frame" x="93.5" y="100" width="126" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="126" id="473-Vv-dKP"/>
                                     <constraint firstAttribute="height" constant="100" id="Tqp-QG-aKA"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speedy Moving Inventory" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YM5-QO-fve">
+                                <rect key="frame" x="38.5" y="244" width="236" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="236" id="oFA-ae-mJv"/>
                                     <constraint firstAttribute="height" constant="21" id="oRa-SI-snA"/>
@@ -34,9 +39,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.81176470588235294" green="0.88235294117647056" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="YM5-QO-fve" firstAttribute="top" secondItem="gN2-t9-hBc" secondAttribute="bottom" constant="8" symbolic="YES" id="8sa-vN-3eX"/>
+                            <constraint firstItem="YM5-QO-fve" firstAttribute="top" secondItem="gN2-t9-hBc" secondAttribute="bottom" constant="44" id="8sa-vN-3eX"/>
                             <constraint firstItem="gN2-t9-hBc" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="80" id="YWR-77-745"/>
                             <constraint firstItem="gN2-t9-hBc" firstAttribute="centerX" secondItem="YM5-QO-fve" secondAttribute="centerX" id="kai-83-0oD"/>
                             <constraint firstItem="YM5-QO-fve" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" constant="-3.5" id="zfw-g2-STe"/>
@@ -49,6 +54,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="speedy_logo" width="192" height="192"/>
+        <image name="speedy_logo" width="100" height="100"/>
     </resources>
 </document>

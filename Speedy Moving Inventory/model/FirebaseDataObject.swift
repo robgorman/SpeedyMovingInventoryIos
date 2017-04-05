@@ -45,6 +45,31 @@ open class FirebaseDataObject: NSObject {
         setValue(Address(child), forKey: key)
       } else if (key == "destinationAddress"){
         setValue(Address(child), forKey: key)
+      } else if (key == "address"){
+        setValue(Address(child), forKey : key)
+      } else if (key == "signatureLoadedForStorage" || key == "signatureInStorage"
+        || key == "signatureLoadedForDelivery" || key == "signatureDelivered"){
+        setValue(Signature(child), forKey : key)
+      } else if (key == "users" ){
+        // 
+        if self is Job {
+          print("what to do")
+          var users : [UserIdMapEntry] = [];
+          let all = child.value as! NSDictionary;
+        
+          for key in all.allKeys {
+            let id = key as! String
+            let nextMap = UserIdMapEntry(uid: id);
+         
+            users.append(nextMap);
+          }
+          setValue(users, forKey:key);
+        } else if self is Company {
+          print("we can ignore for now");
+        }
+      } else if (key == "signatureNew"){
+        // just ignore
+        print("ignore")
       } else if responds(to: Selector(key)) {
         setValue(child.value, forKey:key)
       }

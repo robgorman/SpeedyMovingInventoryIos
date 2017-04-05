@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Firebase
 
-class LoginViewController : ResponsiveTextFieldViewController, FirebaseDatabaseReferenceable{
+class LoginViewController :  UIViewController, UITextFieldDelegate, UITextViewDelegate, FirebaseDatabaseReferenceable{
   
   // input vaar
   var allowAutoLogin = true;
@@ -22,7 +22,10 @@ class LoginViewController : ResponsiveTextFieldViewController, FirebaseDatabaseR
   @IBOutlet weak var buttonForgotPassword: UIButton!
   
    @IBOutlet weak var checkRememberMe: UISwitch!
+  @IBOutlet weak var workingView: UIView!
   
+  @IBOutlet weak var loginForm: UIView!
+ 
   var activeTextField: UITextField?;
 
   
@@ -30,39 +33,60 @@ class LoginViewController : ResponsiveTextFieldViewController, FirebaseDatabaseR
   
   var navigationBarHiddenState : Bool! = false;
  
-  var done = false;
+  var fired = false;
   var listenerHandle : FIRAuthStateDidChangeListenerHandle!;
+  
+  var isLoggingIn : Bool = false;
+  
+  var usersReference : FIRDatabaseReference?
   
   override func viewWillAppear(_ animated: Bool) {
     navigationBarHiddenState = self.navigationController?.isNavigationBarHidden
     self.navigationController?.isNavigationBarHidden = true; 
     // TODO add the auth state listener. My current issue is that
     // I can't figure out how to save the listener in a block
-    done = false; 
-    
+    fired = false;
+    //showProgressView(progress: true);
+
     listenerHandle = auth?.addStateDidChangeListener({
       auth, user in
       
-      if self.done{
+      if self.fired{
         return
       }
         
       if user != nil{
-        self.done = true;
+        self.fired = true;
         self.lookupDatabaseUser(user!)
+        
       }
       }
     );
+    
+    let appDelegate  = UIApplication.shared.delegate as! AppDelegate;
+    let credentials = appDelegate.getSavedCredentials()
+    if (credentials != nil)  {
+      editEmail.text = credentials?.email;
+      editPassword.text = credentials?.password
+    }
+    
+    updateView();
   }
   
   override func viewWillDisappear(_ animated: Bool) {
     auth?.removeStateDidChangeListener(listenerHandle);
     self.navigationController?.isNavigationBarHidden = navigationBarHiddenState
-  }
+    isLoggingIn = false;
+    }
 
+  func showProgressView(progress : Bool){
+    workingView.isHidden = !progress
+    loginForm.isHidden = progress
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    Hud.on(self);
+    //Hud.on(self);
     // Do any additional setup after loading the view, typically from a nib.
     
     ButtonStyler.style(buttonSignIn)
@@ -78,14 +102,12 @@ class LoginViewController : ResponsiveTextFieldViewController, FirebaseDatabaseR
     } else if (credentials != nil) && !allowAutoLogin {
       editEmail.text = credentials?.email;
       editPassword.text = credentials?.password
-      Hud.off(self);
+      //Hud.off(self);
     } else {
-      Hud.off(self);
+      //Hud.off(self);
     }
 
-    checkRememberMe.onTintColor = Colors.themeGreenBase;
-    checkRememberMe.tintColor = Colors.themeBlueLight
-    
+
     
     // ATTENTION: This was auto-generated to implement the App Indexing API.
     // See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -93,7 +115,7 @@ class LoginViewController : ResponsiveTextFieldViewController, FirebaseDatabaseR
   }
   
   func attemptLogin(){
-      let rememberMe = checkRememberMe.isOn;
+    let rememberMe = checkRememberMe.isOn;
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
     if !rememberMe{
@@ -121,7 +143,7 @@ class LoginViewController : ResponsiveTextFieldViewController, FirebaseDatabaseR
   
    // TODO validate eamil and password to be 
     // sure no errors
-    Hud.on(self);
+    //Hud.on(self);
     doLogin(email!, password: password!);
     
   }
@@ -131,9 +153,32 @@ class LoginViewController : ResponsiveTextFieldViewController, FirebaseDatabaseR
   func lookupDatabaseUser(_ firebaseUser : FIRUser) -> Void{
     
     let uid = firebaseUser.uid;
-    let ref : FIRDatabaseReference = FIRDatabase.database().reference(withPath: "/users/\(uid)")
-    ref.observe(FIRDataEventType.value, with: {(snapshot) in
+    usersReference  = FIRDatabase.database().reference(withPath: "/users/\(uid)")
+    usersReference?.observeSingleEvent(of: FIRDataEventType.value, with: {(snapshot) in
+      if !snapshot.exists(){
+        UiUtility.showAlert("Unexpected Error", message: "Unexpected error. User is not present; Was user deleted?", presenter: self);
+        self.isLoggingIn = false;
+        self.updateView();
+        return
+      }
       let user = User(snapshot);
+      // TODO what to do about customer logins
+      /*
+      if user.getRole() == Role.Customer {
+        UiUtility.showAlert("Permissions Restriction", message: "We're sorry, but we presently do not support Customer logins in the mobile app. Please try the web interface at https://app.speedymovinginventory.com", presenter: self)
+        do {
+          try self.auth?.signOut()
+          self.fired = false;
+          self.isLoggingIn = false;
+          self.updateView()
+          return
+        } catch {
+          UiUtility.showAlert("Unexpected Error", message: "Error: Cant read user information. Please contact support", presenter: self)
+          self.isLoggingIn = false;
+          self.updateView()
+          return
+        }
+      }*/
       
       let appDelegate  = UIApplication.shared.delegate as! AppDelegate;
       appDelegate.currentUser = user;
@@ -144,26 +189,38 @@ class LoginViewController : ResponsiveTextFieldViewController, FirebaseDatabaseR
       }
       DispatchQueue.main.async  {
         
-        let vc = (self.storyboard?.instantiateViewController(withIdentifier: "JobsViewController"))
-      
-        self.navigationController?.pushViewController(vc!, animated: true);
-        //self.present(vc!, animated: true, completion: nil);
-        Hud.off(self)
+        let sb = self.storyboard!
+
+    
+        let vc = (sb.instantiateViewController(withIdentifier: "ChooseCompanyViewController"))
+        self.navigationController?.pushViewController(vc, animated: true);
       }
+      
     });
     
   }
-
+  
   func doLogin(_ email: String, password : String){
-    
+    //showProgressView(progress: true)
+    isLoggingIn = true;
+    updateView();
     auth?.signIn(withEmail: email, password: password, completion:
     {(user, error) in
+      //self.showProgressView(progress: false);
       if error != nil{
-        Hud.off(self);
+        //Hud.off(self);
+        
         UiUtility.showAlert("Login Failed", message: (error?.localizedDescription)!, presenter: self)
-     
+        self.fired = false;
+        self.isLoggingIn = false;
+        self.updateView();
       }
     })
+  }
+  
+  func updateView(){
+    loginForm.isHidden = isLoggingIn;
+    workingView.isHidden = !isLoggingIn;
   }
   
   override func didReceiveMemoryWarning() {
@@ -184,24 +241,24 @@ class LoginViewController : ResponsiveTextFieldViewController, FirebaseDatabaseR
     
     return true;
   }
-  override func textFieldDidBeginEditing(_ textField: UITextField) // became first responder
+  func textFieldDidBeginEditing(_ textField: UITextField) // became first responder
   {
-    super.textFieldDidBeginEditing(textField)
+    //super.textFieldDidBeginEditing(textField)
     activeTextField = textField;
   }
   func textFieldShouldEndEditing(_ textField: UITextField) -> Bool // return YES to allow editing to stop and to resign first responder status. NO to disallow the editing session to end
   {
     return true;
   }
-  override func textFieldDidEndEditing(_ textField: UITextField) // may be called if forced even if shouldEndEditing returns NO (e.g. view removed from window) or endEditing:YES called
+  func textFieldDidEndEditing(_ textField: UITextField) // may be called if forced even if shouldEndEditing returns NO (e.g. view removed from window) or endEditing:YES called
   {
-    super.textFieldDidEndEditing(textField)
+    //super.textFieldDidEndEditing(textField)
     
   }
   
   
   func textField(_ textField: UITextField,
-                 shouldChangeCharactersInRange range: NSRange,
+                 shouldChangeCharactersIn range: NSRange,
                  replacementString string: String) -> Bool{
     if string.characters.count == 0{
       return true;
@@ -210,7 +267,7 @@ class LoginViewController : ResponsiveTextFieldViewController, FirebaseDatabaseR
   }
   
   
-  override func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'return' key pressed. return NO to ignore.
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'return' key pressed. return NO to ignore.
   {
     if activeTextField == editEmail{
       editPassword.becomeFirstResponder()

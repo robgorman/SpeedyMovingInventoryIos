@@ -67,7 +67,7 @@ public final class QRCodeReaderViewControllerBuilder {
   /**
    Flag to display the toggle torch button. If the value is true and there is no torch the button will not be displayed.
    */
-  public var showTorchButton = false
+  public var showTorchButton = true
 
   // MARK: - Initializing a Flap View
 

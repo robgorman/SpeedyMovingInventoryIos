@@ -11,7 +11,12 @@ class Address :  FirebaseDataObject {
   
   required init(_ snapshot: FIRDataSnapshot){
     super.init(snapshot);
+    if addressLine2 == nil{
+      addressLine2 = ""
+    }
   }
+  
+  
 
   /*
   public Address(String street, String addressLine2, String city, String state, String zip){

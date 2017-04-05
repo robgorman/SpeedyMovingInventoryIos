@@ -20,4 +20,25 @@ extension String {
     let lowerIndex = index(startIndex, offsetBy: max(0,range.lowerBound), limitedBy: endIndex) ?? endIndex
     return substring(with: lowerIndex..<(index(lowerIndex, offsetBy: range.upperBound - range.lowerBound + 1, limitedBy: endIndex) ?? endIndex))
   }
+  func index(of string: String, options: String.CompareOptions = .literal) -> String.Index? {
+    return range(of: string, options: options, range: nil, locale: nil)?.lowerBound
+  }
+  func indexes(of string: String, options: String.CompareOptions = .literal) -> [String.Index] {
+    var result: [String.Index] = []
+    var start = startIndex
+    while let range = range(of: string, options: options, range: start..<endIndex, locale: nil) {
+      result.append(range.lowerBound)
+      start = range.upperBound
+    }
+    return result
+  }
+  func ranges(of string: String, options: String.CompareOptions = .literal) -> [Range<String.Index>] {
+    var result: [Range<String.Index>] = []
+    var start = startIndex
+    while let range = range(of: string, options: options, range: start..<endIndex, locale: nil) {
+      result.append(range)
+      start = range.upperBound
+    }
+    return result
+  }
 }

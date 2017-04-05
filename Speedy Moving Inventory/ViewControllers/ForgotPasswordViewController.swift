@@ -11,7 +11,7 @@ import UIKit
 import Firebase
 
 
-class ForgotPasswordViewController : ResponsiveTextFieldViewController{
+class ForgotPasswordViewController : UIViewController, UITextFieldDelegate, UITextViewDelegate{
   
   var companyKey : String?
   
@@ -85,33 +85,20 @@ class ForgotPasswordViewController : ResponsiveTextFieldViewController{
     
     return true;
   }
-  override func textFieldDidBeginEditing(_ textField: UITextField) // became first responder
+  func textFieldDidBeginEditing(_ textField: UITextField) // became first responder
   {
-    super.textFieldDidBeginEditing(textField)
+   
     activeTextField = textField;
   }
   func textFieldShouldEndEditing(_ textField: UITextField) -> Bool // return YES to allow editing to stop and to resign first responder status. NO to disallow the editing session to end
   {
     return true;
   }
-  override func textFieldDidEndEditing(_ textField: UITextField) // may be called if forced even if shouldEndEditing returns NO (e.g. view removed from window) or endEditing:YES called
-  {
-    super.textFieldDidEndEditing(textField)
-    
-  }
   
   
-  func textField(_ textField: UITextField,
-                 shouldChangeCharactersInRange range: NSRange,
-                 replacementString string: String) -> Bool{
-    if string.characters.count == 0{
-      return true;
-    }
-    return true;
-  }
   
   
-  override func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'return' key pressed. return NO to ignore.
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'return' key pressed. return NO to ignore.
   {
     textField.resignFirstResponder()
     return true;

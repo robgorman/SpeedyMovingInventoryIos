@@ -22,6 +22,16 @@ class Utility{
     return uuid != nil
   }
   
+  class func convertDateToNsNumber(date : Date) -> NSNumber{
+   // need to convert the swift date into int64 then multiply by 1000
+    // to get the right units for unix timestamp. Not exactly sure why
+    // this is correct but it is. There might be a better way too.
+
+    let left = Int64(date.timeIntervalSince1970)
+    let convertedDateTime = (left * 1000) as Int64;
+    return convertedDateTime as NSNumber
+  }
+  
   class func convertNsNumberToDate(rawValue : NSNumber?) -> Date{
     let d = (rawValue?.int64Value)!/1000
     let date = Date(timeIntervalSince1970: Double(d))

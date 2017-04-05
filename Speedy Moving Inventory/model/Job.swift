@@ -27,10 +27,10 @@ enum Lifecycle : String   {case New, LoadedForStorage, InStorage, LoadedForDeliv
   var signatureInStorage : Signature? // can be null
   var signatureLoadedForDelivery : Signature? // can be null
   var signatureLoadedForStorage : Signature? // can be null
-  var signatureNew : Signature? // can be null
   var storageInTransit : NSNumber?
   // TODO we have to add this back
-  //var Map<String, UserIdMapEntry> users; // can be null
+  var users : [UserIdMapEntry]? // can be null
+  var isCancelled : NSNumber?
 
   required public init(_ snapshot: FIRDataSnapshot){
     super.init(snapshot);
@@ -46,6 +46,13 @@ enum Lifecycle : String   {case New, LoadedForStorage, InStorage, LoadedForDeliv
   }
   
 
+  func getUsers() -> [UserIdMapEntry]{
+    if users == nil{
+      return [];
+    } else {
+      return users!;
+    }
+  }
   
   
   func getPickupDateTime() -> Date{
@@ -68,5 +75,12 @@ enum Lifecycle : String   {case New, LoadedForStorage, InStorage, LoadedForDeliv
 
   func getStorageInTransit() -> Bool{
     return (storageInTransit?.boolValue)!
+  }
+  
+  func getIsCancelled() -> Bool{
+    if isCancelled == nil{
+      isCancelled = false;
+    }
+    return (isCancelled?.boolValue)!
   }
 }

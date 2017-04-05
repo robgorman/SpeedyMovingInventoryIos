@@ -13,22 +13,32 @@ import Firebase
 class JobSummary : UIViewController, IJobConsumer{
   
 
-  @IBOutlet weak var pickupDateTime  : UILabel! 
-  @IBOutlet weak var pickupAddressLine1  : UILabel! 
-  @IBOutlet weak var pickupAddressLine2  : UILabel! 
-  @IBOutlet weak var pickupAddressLine3  : UILabel! 
+  @IBOutlet weak var pickupDateTime  : UILabel!
   
-  @IBOutlet weak var deliveryTimeWindow  : UILabel! 
-  @IBOutlet weak var deliveryAddressLine1  : UILabel! 
-  @IBOutlet weak var deliveryAddressLine2  : UILabel! 
-  @IBOutlet weak var deliveryAddressLine3  : UILabel! 
+  @IBOutlet weak var pickupAddress: UITextView!
+  
+  @IBOutlet weak var deliveryAddress: UITextView!
+ //@IBOutlet weak var pickupAddressLine1  : UILabel!
+ //@IBOutlet weak var pickupAddressLine2  : UILabel!
+ //@IBOutlet weak var pickupAddressLine3  : UILabel!
+  
+  @IBOutlet weak var deliveryTimeWindow  : UILabel!
+  //@IBOutlet weak var deliveryAddressLine1  : UILabel!
+  //@IBOutlet weak var deliveryAddressLine2  : UILabel!
+  //@IBOutlet weak var deliveryAddressLine3  : UILabel!
   
   
-  @IBOutlet weak var totalValue  : UILabel! 
+  @IBOutlet weak var totalValue  : UILabel!
   @IBOutlet weak var totalNumberOfPads  : UILabel! 
   @IBOutlet weak var totalVolume  : UILabel! 
   @IBOutlet weak var totalWeight  : UILabel! 
-  @IBOutlet weak var totalNumberDamagedItems  : UILabel! 
+  @IBOutlet weak var totalNumberDamagedItems  : UILabel!
+  
+  var tValue : Int = 0
+  var tNumberOfPads : Int = 0
+  var tVolume : Float = 0.0
+  var tWeightLbs : Float = 0.0
+  var tNumberOfDamagedItems : Int = 0
   
   
   var jobKey : String!  // caller will provide
@@ -53,36 +63,37 @@ class JobSummary : UIViewController, IJobConsumer{
   }
   
   func updateTotals(){
-    var value = 0
-    var numberOfPads = 0
-    var volume : Float = 0.0
-    var weightLbs : Float = 0.0
-    var numberDamagedItems = 0
+    tValue = 0
+    tNumberOfPads = 0
+    tVolume  = 0.0
+    tWeightLbs  = 0.0
+    tNumberOfDamagedItems = 0
     for (_, item) in itemsMap{
-      value += item.getMonetaryValue()
-      numberOfPads += item.getNumberOfPads()
-      volume += item.getVolume()
-      weightLbs += item.getWeightLbs()
-      numberDamagedItems += ((item.getHasClaim()) ? 1 : 0)
+      tValue +=  item.getMonetaryValue()
+      tNumberOfPads +=  item.getNumberOfPads()
+      tVolume +=  item.getVolume()
+      tWeightLbs += item.getWeightLbs()
+      tNumberOfDamagedItems += ((item.getHasClaim()) ? 1 : 0)
       
     }
     
     let currencyFormatter = NumberFormatter()
     currencyFormatter.maximumFractionDigits = 0;
     currencyFormatter.numberStyle = NumberFormatter.Style.currency
-    let nsnumber = NSNumber(value: value)
+    let nsnumber = NSNumber(value: tValue)
     totalValue.text = currencyFormatter.string( from:nsnumber);
-    totalNumberOfPads.text = String(numberOfPads)
-    totalVolume.text = String(format:"%.1f", volume) + " ft3";
-    totalWeight.text = String(format:"%.0f", weightLbs) + " lbs"
-    totalNumberDamagedItems.text = String(numberDamagedItems)
+    totalNumberOfPads.text = String(tNumberOfPads)
+    let s = String(format:"%.1f", tVolume) + " ft3";
+    totalVolume.attributedText = TextUtils.formFt3Superscript(text: s);
+    totalWeight.text = String(format:"%.0f", tWeightLbs) + " lbs"
+    totalNumberDamagedItems.text = String(tNumberOfDamagedItems)
     
 
   }
   
   func updateFromJob(){
     let pickupDateFormatter = DateFormatter()
-    pickupDateFormatter.dateFormat = "M/d/yyyy h:mm a"
+    pickupDateFormatter.dateFormat = "M/d/yy h:mm a"
     
     
     let pDateTime = job.getPickupDateTime()
@@ -91,13 +102,14 @@ class JobSummary : UIViewController, IJobConsumer{
     pickupDateTime.text = s;
     
     let pickup = job.originAddress!;
-    pickupAddressLine1.text = pickup.street
+    pickupAddress.text = pickup.street
     if pickup.addressLine2 != nil && (pickup.addressLine2?.lengthOfBytes(using: String.Encoding.utf16))! > 1{
-      pickupAddressLine2.text = pickup.addressLine2;
-      pickupAddressLine3.text = pickup.city! + ", " + pickup.state! + " " + pickup.zip!;
+      pickupAddress.text = pickupAddress.text + "\n" + pickup.addressLine2!
+      pickupAddress.text = pickupAddress.text + "\n" + pickup.city! + ", " + pickup.state! + " " + pickup.zip!;
     } else {
-      pickupAddressLine2.text = pickup.city! + ", " + pickup.state! + " " + pickup.zip!;
-      pickupAddressLine3.text = "";
+      pickupAddress.text = pickupAddress.text +
+       "\n" + pickup.city! + ", " + pickup.state! + " " + pickup.zip!;
+     
     }
     
     fillinDeliveryWindow(job)
@@ -106,7 +118,7 @@ class JobSummary : UIViewController, IJobConsumer{
   
   func fillinDeliveryWindow(_ job : Job){
     let deliveryDateFormatter = DateFormatter()
-    deliveryDateFormatter.dateFormat = "M/d/yyyy"
+    deliveryDateFormatter.dateFormat = "M/d/yy"
 
 
     var windowEarly : String? = nil
@@ -137,21 +149,21 @@ class JobSummary : UIViewController, IJobConsumer{
     deliveryTimeWindow.text = window
 
     if job.destinationAddress?.street != nil{
-      deliveryAddressLine1.text = job.destinationAddress?.street
+      deliveryAddress.text = job.destinationAddress?.street
       let destAddress = job.destinationAddress!
       if destAddress.addressLine2 != nil && (destAddress.addressLine2?.lengthOfBytes(using: String.Encoding.utf16))! > 1{
-        deliveryAddressLine2.text = destAddress.addressLine2;
-        deliveryAddressLine3.text = destAddress.city! + ", " + destAddress.state! + " " + destAddress.zip!;
+        deliveryAddress.text = deliveryAddress.text + "\n" +  destAddress.addressLine2!
+        deliveryAddress.text = deliveryAddress.text  + "\n" + destAddress.city! + ", " + destAddress.state! + " " + destAddress.zip!
+        
       } else {
-        deliveryAddressLine2.text = destAddress.city! + ", " + destAddress.state! + " " + destAddress.zip!;
-        deliveryAddressLine3.text = "";
+        deliveryAddress.text = deliveryAddress.text
+          + "\n" + destAddress.city! + ", " + destAddress.state! + " " + destAddress.zip!;
+        
       }
 
     } else {
-      deliveryAddressLine1.text = ""
-      deliveryAddressLine2.text = ""
-      deliveryAddressLine3.text = ""
-
+      deliveryAddress.text = ""
+      
     }
     
   }

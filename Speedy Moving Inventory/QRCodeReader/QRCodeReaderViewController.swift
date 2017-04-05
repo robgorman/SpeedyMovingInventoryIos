@@ -44,6 +44,7 @@ public class QRCodeReaderViewController: UIViewController {
   let showSwitchCameraButton: Bool
   let showTorchButton: Bool
 
+  var visible = true;
   // MARK: - Managing the Callback Responders
 
   /// The receiver's delegate that will be called when a result is found.
@@ -87,7 +88,9 @@ public class QRCodeReaderViewController: UIViewController {
     
       let deadlineTime = DispatchTime.now() + .milliseconds(500)
       DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
-        self?.startScanning()
+        if (self?.visible)! {
+          self?.startScanning()
+        }
       }
     }
 
@@ -103,7 +106,7 @@ public class QRCodeReaderViewController: UIViewController {
     codeReader             = QRCodeReader(metadataObjectTypes: [])
     startScanningAtLoad    = false
     showCancelButton       = false
-    showTorchButton        = false
+    showTorchButton        = true
     showSwitchCameraButton = false
 
     super.init(coder: aDecoder)
@@ -120,13 +123,13 @@ public class QRCodeReaderViewController: UIViewController {
     if startScanningAtLoad {
       startScanning()
     }
-    
+    visible = true;
     self.navigationController?.isNavigationBarHidden = true;
   }
 
   override public func viewWillDisappear(_ animated: Bool) {
     stopScanning()
-
+    visible = false;
     super.viewWillDisappear(animated)
      self.navigationController?.isNavigationBarHidden = false;
   }

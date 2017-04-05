@@ -8,35 +8,102 @@
 
 import UIKit
 import Firebase
+import AlamofireImage
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
+  
 
   var user : User?
-  var currentUser : User?{
-    set {
-      user = newValue;
-      FIRDatabase.database().reference(withPath:"companies/" + (newValue?.companyKey)!)
-        .observe(FIRDataEventType.value, with: {(snapshot) in
-          self.currentCompany = Company(snapshot)
-        })
-    }
-    get {
-      return user;
-    }
-  }
+  var currentUser : User?  
 
   var currentCategory : Category?
   
   var currentCompany : Company?
+  var userCompanyAssignment : UserCompanyAssignment?
+  
+  var count  = 0
+  var initializationDone = false;
+  
+  var movingItemDescriptions : [String : [MovingItemDataDescription]] = [:];
+  
+  var storageUrl : String?
+  var webAppUrl : String?
+  var mailServer : Server?
+  
+  
+  func getListFor(room : Room) -> [MovingItemDataDescription]{
+    return movingItemDescriptions[room.rawValue]!;
+  }
+  
+  func loadMovingItemDescriptions(){
+    let roomLists = FIRDatabase.database().reference(withPath: "speedyMovingItemDataDescriptions/");
+    roomLists.observe(.childAdded, with: {(snapshot) -> Void in
+      
+      
+      for next in snapshot.children {
+        let nextSnap = next as! FIRDataSnapshot;
+        let itemDataDescription = MovingItemDataDescription(nextSnap)
+        var itemsSoFar : [MovingItemDataDescription]? = self.movingItemDescriptions[itemDataDescription.room!];
+        if (itemsSoFar == nil){
+          itemsSoFar = [];
+        }
+        itemsSoFar?.append(itemDataDescription)
+        self.movingItemDescriptions[itemDataDescription.room!] = itemsSoFar
+
+      }
+      self.initializationDone = true;
+
+      /*
+      
+      let itemListForRoom = FIRDatabase.database().reference(withPath: "speedyMovingItemDataDescriptions/" + snapshot.key)
+      itemListForRoom.observe(.childAdded, with: {(snapshot) -> Void in
+        let itemDataDescription = MovingItemDataDescription(snapshot)
+        var itemsSoFar : [MovingItemDataDescription]? = self.movingItemDescriptions[itemDataDescription.room!];
+        if (itemsSoFar == nil){
+          itemsSoFar = [];
+        }
+        itemsSoFar?.append(itemDataDescription)
+        self.movingItemDescriptions[itemDataDescription.room!] = itemsSoFar
+        })
+     
+      self.count = self.count + 1;
+      if (self.count == 14 ){
+        self.initializationDone = true;
+      }
+ */
+
+    })
+  }
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
     
     // init firebase
     FIRApp.configure();
+    UIApplication.shared.isNetworkActivityIndicatorVisible = false;
+    loadMovingItemDescriptions();
+    
+    // enable IQKeyboardManagerSwift
+    IQKeyboardManager.sharedManager().enable = true;
+    
+    // this changes based on dev or prod
+    // TODO this should be put into build target or config, etc
+    // There must be a better way
+    #if DEVELOPMENT
+      storageUrl = "gs://speedymovinginventorydev-9c905.appspot.com"
+      webAppUrl = "https://speedymovinginventorydev-9c905.firebaseapp.com"
+    #else
+      storageUrl = "gs://speedymovinginventory.appspot.com"
+      webAppUrl = "https://app.speedymovinginventory.com"
+
+    #endif
+    
+    mailServer = Server(baseUrl: "https://speedymovinginventory.appspot.com");
+    
     return true
   }
 
@@ -87,6 +154,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
   }
 
+  func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+    var vc2 : UIViewController? = nil;
+    let vc = UIApplication.shared.keyWindow?.rootViewController;
+    if vc is UINavigationController{
+      let nc = vc as! UINavigationController
+      vc2 = nc.presentedViewController;
+    }
+    //let vc2 = vc?.presentedViewController
+    //let win = self.;
+    //let root = win?.rootViewController;
+    //let vc = root?.presentedViewController;
+    //let vc2 = root?.presentingViewController;
+    
+    if vc is SignOffViewController || vc2 is SignOffViewController{
+      
+      return UIInterfaceOrientationMask.portrait;
+      
+    } else {
+      return UIInterfaceOrientationMask.all;
+    }
+    
+  }
+  
 
 }
 

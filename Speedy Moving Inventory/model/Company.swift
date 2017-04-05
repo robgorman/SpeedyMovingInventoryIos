@@ -7,6 +7,7 @@ import Firebase
 class Company: FirebaseDataObject{
   var active : Bool?
   var address : Address?
+  var contactPerson : String?
   var calT : String?
   var dateCreated : NSNumber?
   var dateDeactivated : NSNumber?
@@ -18,6 +19,8 @@ class Company: FirebaseDataObject{
   var poundsPerCubicFoot : String?
   var usDot : String?
   var website : String?
+  
+  var users : [String]? // first string is timestamp second url
 
   required init(_ snapshot: FIRDataSnapshot){
     super.init(snapshot);

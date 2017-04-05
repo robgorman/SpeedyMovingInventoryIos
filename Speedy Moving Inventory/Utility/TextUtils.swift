@@ -17,11 +17,7 @@ class TextUtils{
     return false
   }
   
-  static func formatPhoneNumber(_ phoneNumber : String) -> String{
-    // TODO
-    return phoneNumber
-  }
-  
+    
   static func isPasswordValid(_ password : String) -> Bool{
     if password.characters.count >= minimumPasswordLength(){
       return true
@@ -71,4 +67,63 @@ class TextUtils{
     return true;
     
   }
+  
+  static func isBlank(s : String) -> Bool{
+  
+    var trimmed = s.trimmingCharacters(in:NSCharacterSet.whitespacesAndNewlines)
+    return trimmed.characters.count == 0;
+    
+  }
+  
+  static func formSingleLineAddress(address : Address) -> String{
+    var line2 = ", "
+    if address.addressLine2 != nil{
+      if !isBlank(s: address.addressLine2!){
+        line2 = " " + address.addressLine2! + ", "
+      }
+    }
+    var result = address.street! + line2 + address.city!;
+    result = result + ", " + address.state! + " " + address.zip!;
+    return result;
+    
+  }
+  
+  static func formFt3Superscript( text : String) -> NSAttributedString{
+    
+    //let ranges = text.indexes(of: "ft3");
+    //let range = ranges[ranges.count - 1 ];
+    
+    
+    let string = NSString(string: text)
+    var range = string.range(of: "ft3")
+    range.location += 2;
+    range.length = 1;
+    
+    let font = UIFont.systemFont(ofSize:17)
+    let fontSuper = UIFont.systemFont(ofSize:9)
+    let attString:NSMutableAttributedString =
+      NSMutableAttributedString(string: text, attributes: [NSFontAttributeName:font])
+    
+    attString.setAttributes([NSFontAttributeName:fontSuper, NSBaselineOffsetAttributeName:5],
+                            range: range);
+    return attString;
+    
+    /*
+     var ranges = text.ranges(of: "3");
+     var targetRange = ranges[ranges.count -1]
+     let startIndex =
+     let index = text.startIndex.distance(indexes[indexes.count-1]);
+     let intIndex = text.distance(from: text.startIndex, to: index)
+     
+     
+     let attString:NSMutableAttributedString =
+     NSMutableAttributedString(string: text, attributes: [NSFontAttributeName:font])
+     attString.setAttributes([NSFontAttributeName:fontSuper,NSBaselineOffsetAttributeName:4],
+     range: NSRange(location: intIndex,length:1))
+     
+     
+     return attString;
+     */
+  }
+
 }

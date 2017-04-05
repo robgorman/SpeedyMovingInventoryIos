@@ -78,6 +78,7 @@ class ResponsiveTextFieldViewController : UIViewController, UITextFieldDelegate,
     let targetPointOffset: CGFloat = targetTextFieldLowerPoint.y - convertedTextFieldLowerPoint.y
     let adjustedViewFrameCenter: CGPoint = CGPoint(x: view.center.x, y: view.center.y + targetPointOffset)
     
+    print(targetPointOffset)
     // don't scroll text fields down
     if (targetPointOffset < 0) {
       UIView.animate(withDuration: 0.2, animations: {
@@ -89,6 +90,10 @@ class ResponsiveTextFieldViewController : UIViewController, UITextFieldDelegate,
   func returnViewToInitialFrame()
   {
     let initialViewRect: CGRect = CGRect(x: 0.0, y: 0.0, width: self.view.frame.size.width, height: self.view.frame.size.height)
+    print (initialViewRect);
+    debugPrint(initialViewRect);
+    print (self.view.frame);
+    debugPrint(self.view.frame);
     
     if !initialViewRect.equalTo(self.view.frame)
     {

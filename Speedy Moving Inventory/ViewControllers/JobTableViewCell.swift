@@ -15,8 +15,8 @@ class JobTableViewCell : UITableViewCell {
   
   @IBOutlet weak var labelJobName: UILabel!
   
-  @IBOutlet weak var labelLifecycle: UILabel!
   
+  @IBOutlet weak var imageViewLifecycle: UIImageView!
   @IBOutlet weak var labelPickupDate: UILabel!
   
   @IBOutlet weak var labelEstimatedDelivery: UILabel!

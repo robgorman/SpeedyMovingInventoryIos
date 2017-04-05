@@ -1,14 +1,14 @@
 import Firebase
 import Foundation
 
-enum Category : String {case Bedroom1, Bedroom2, Bedroom3, Bedroom4, Bedroom5,
-  Garage, DiningRoom, Den, LivingRoom, Kitchen, Bathroom, Patio,
-  Yard, BonusRoom, Other
+enum Category : String {case Basement, Bedroom1, Bedroom2, Bedroom3, Bedroom4, Bedroom5,
+  Garage, DiningRoom, Den, Office, LivingRoom, Kitchen, Bathroom, Patio,
+  Sunroom, Laundry, Nursery, Other
 
   static var allValues: [Category]{
-    return [.Bedroom1, .Bedroom2, .Bedroom3, .Bedroom4, .Bedroom5,
-            .Garage, .DiningRoom, .Den, .LivingRoom, .Kitchen, .Bathroom, .Patio,
-            .Yard, .BonusRoom, .Other];
+    return [.Basement, .Bedroom1, .Bedroom2, .Bedroom3, .Bedroom4, .Bedroom5,
+            .Garage, .DiningRoom, .Den, .Office, .LivingRoom, .Kitchen, .Bathroom, .Patio,
+            .Sunroom, .Laundry, .Nursery, .Other];
   }
 }
 
@@ -33,6 +33,7 @@ class Item : FirebaseDataObject {
   var imageReferences : NSMutableDictionary? //[String : String]? // first string is timestamp second url
   var insurance : String?
   var isBox : NSNumber?
+  var isDisassembled : NSNumber?
   var isClaimActive : NSNumber?
   var claimActiveInverse : NSNumber?
   var isScanned : NSNumber?
@@ -50,6 +51,10 @@ class Item : FirebaseDataObject {
   var weightLbs: NSNumber?
   var weightLbsInverse: NSNumber?
   var syncWeightAndVolume : NSNumber?
+  var itemWasCreatedOutOfPhase : NSNumber?
+  // latest adds may be nil?
+  var createDateTime : NSNumber?
+  var createDateTimeInverse : NSNumber?
   
   required init(_ snapshot: FIRDataSnapshot){
     super.init(snapshot);
@@ -70,7 +75,9 @@ class Item : FirebaseDataObject {
     specialHandling : String,
     jobKey : String,
     packedBy : PackedBy,
-    isBox : Bool)
+    isBox : Bool,
+    itemWasCreatedOutOfPhase : Bool,
+    createDateTime : Date)
   {
     
     super.init()
@@ -92,7 +99,10 @@ class Item : FirebaseDataObject {
     self.setIsScanned(value: false)
     self.damageDescription = ""
     self.setIsBox(value: isBox)
-    self.setSyncWeightAndVolume(value: true);
+    self.setSyncWeightAndVolume(value: true)
+    self.setIsDisassembled(value : false)
+    self.setItemWasCreatedOutOfPhase(value : itemWasCreatedOutOfPhase)
+    self.setCreateDateTime(value: createDateTime)
 
   }
   
@@ -124,6 +134,10 @@ class Item : FirebaseDataObject {
     fbo["weightLbs"] = weightLbs
     fbo["weightLbsInverse"] = weightLbsInverse
     fbo["syncWeightAndVolume"] = syncWeightAndVolume
+    fbo["isDisassembled"]=isDisassembled
+    fbo["itemWasCreatedOutOfPhase"] = itemWasCreatedOutOfPhase
+    fbo["createDateTime"] = createDateTime
+    fbo["createDateTimeInverse"] = createDateTimeInverse
     
     return fbo; 
 
@@ -149,9 +163,30 @@ class Item : FirebaseDataObject {
     if syncWeightAndVolume == nil{
       return true
     }
-    return (syncWeightAndVolume?.boolValue)!}
+    return (syncWeightAndVolume?.boolValue)!
+  }
   
+  func getIsDisassembled() -> Bool {
+    if (isDisassembled == nil){
+      isDisassembled = NSNumber(value : false);
+    }
+    return (isDisassembled?.boolValue)!
+  }
   
+  func getItemWasCreatedOutOfPhase() -> Bool{
+    if (itemWasCreatedOutOfPhase == nil){
+      itemWasCreatedOutOfPhase = NSNumber(value : false)
+    }
+    return (itemWasCreatedOutOfPhase?.boolValue)!;
+  }
+  
+  func getCreateDateTime() -> Date {
+    if createDateTime == nil {
+      return Date();
+    }
+    return Utility.convertNsNumberToDate(rawValue: createDateTime)
+  }
+
   func setNumberOfPads(numberOfPads : Int){
     self.numberOfPads = NSNumber(value: numberOfPads)
     self.numberOfPadsInverse = NSNumber(value: -numberOfPads);
@@ -165,6 +200,12 @@ class Item : FirebaseDataObject {
   func setMonetaryValue(value : Int){
     self.monetaryValue = NSNumber(value: value)
     self.monetaryValueInverse = NSNumber(value :  -value);
+  }
+  
+  func setCreateDateTime(value : Date){
+    let convertedDate = Utility.convertDateToNsNumber(date: value)
+    self.createDateTime = convertedDate;
+    self.createDateTimeInverse = NSNumber(value : convertedDate.int64Value * -1);
   }
   
   
@@ -210,7 +251,16 @@ class Item : FirebaseDataObject {
     self.isBox = NSNumber(value: value)
   }
   
+  func setIsDisassembled(value : Bool){
+    self.isDisassembled = NSNumber(value: value)
+  }
+  
   func setSyncWeightAndVolume(value : Bool){
     self.syncWeightAndVolume = NSNumber(value: value)
+  }
+  
+  func setItemWasCreatedOutOfPhase(value : Bool){
+    self.itemWasCreatedOutOfPhase = NSNumber(value : value)
+   
   }
 }
