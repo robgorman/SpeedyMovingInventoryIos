@@ -32,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   var storageUrl : String?
   var webAppUrl : String?
+  var authDomain : String?
   var mailServer : Server?
   
   
@@ -96,6 +97,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     #if DEVELOPMENT
       storageUrl = "gs://speedymovinginventorydev-9c905.appspot.com"
       webAppUrl = "https://speedymovinginventorydev-9c905.firebaseapp.com"
+      
     #else
       storageUrl = "gs://speedymovinginventory.appspot.com"
       webAppUrl = "https://app.speedymovinginventory.com"

@@ -168,8 +168,15 @@ class SignOffViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     let ti = totalItems
     var summary = "• " + String(ti!);
     
+    // don't add value to summary if company options say so. 
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    if (appDelegate.currentCompany?.getExposeValueToCustomers())!{
+      // don't add value
+      summary = summary + " Items valued at " + totalValueString! + "\n";
+    } else {
+      summary = summary + " Items \n"
+    }
     
-    summary = summary + " Items valued at " + totalValueString! + "\n";
     summary = summary + "• " + "Move destination is " ;
     summary = summary + moveDestination() + "\n";
     return summary
@@ -180,7 +187,7 @@ class SignOffViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     signatureView.delegate = self
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let dateFormatter = DateFormatter();
-    dateFormatter.dateFormat = "EEE, MMM d yyyy, h:mm a";
+    dateFormatter.dateFormat = "EEE, MMM d yyyy, h:mm a z";
    
     let now = Date()
     dateLabel.text = dateFormatter.string(from : now);

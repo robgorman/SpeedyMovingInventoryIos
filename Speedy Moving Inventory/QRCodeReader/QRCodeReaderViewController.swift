@@ -35,6 +35,7 @@ public class QRCodeReaderViewController: UIViewController {
   private var cancelButton: UIButton?
   private var switchCameraButton: SwitchCameraButton?
   private var toggleTorchButton: ToggleTorchButton?
+  private var nextScanButton : UIButton?
 
   /// The code reader object used to scan the bar code.
   public let codeReader: QRCodeReader
@@ -188,7 +189,6 @@ public class QRCodeReaderViewController: UIViewController {
     messageLabel.translatesAutoresizingMaskIntoConstraints = false;
     messageLabel.numberOfLines = 3;
     messageLabel.textAlignment = .center
-    
     messageLabel.font = messageLabel.font.withSize(20);
     view.addSubview(messageLabel);
 
@@ -203,6 +203,16 @@ public class QRCodeReaderViewController: UIViewController {
 
       cancelButton = newCancelButton
     }
+    
+    nextScanButton = UIButton()
+    nextScanButton?.translatesAutoresizingMaskIntoConstraints = false
+    nextScanButton?.setTitle("Next Scan", for: .normal)
+    nextScanButton?.setTitleColor(.gray, for: .highlighted)
+    
+    nextScanButton?.addTarget(self, action: #selector(cancelAction), for: .touchUpInside)
+    view.addSubview(nextScanButton!)
+    
+   
     
   }
 
@@ -223,7 +233,7 @@ public class QRCodeReaderViewController: UIViewController {
     
     if messageLabel != nil{
       let messageViews : [String : AnyObject] = ["messageLabel": messageLabel, "topGuide": topLayoutGuide]
-      view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[topGuide]-[messageLabel(200)]|", options: [], metrics: nil, views: messageViews))
+      view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[topGuide]-[messageLabel(1000)]|", options: [], metrics: nil, views: messageViews))
       view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[messageLabel]-|", options: [], metrics: nil, views: messageViews))
     }
 
@@ -232,6 +242,12 @@ public class QRCodeReaderViewController: UIViewController {
 
       view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[topGuide]-[switchCameraButton(50)]", options: [], metrics: nil, views: switchViews))
       view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[switchCameraButton(70)]|", options: [], metrics: nil, views: switchViews))
+    }
+    
+    if (nextScanButton != nil){
+      let scanViews : [String : AnyObject] = ["nextScanButton": nextScanButton!, "topGuide": topLayoutGuide]
+      view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[topGuide]-[nextScanButton(200)]|", options: [], metrics: nil, views: scanViews))
+      view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[nextScanButton]-|", options: [], metrics: nil, views: scanViews))
     }
 
     if let _toggleTorchButton = toggleTorchButton {

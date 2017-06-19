@@ -131,7 +131,7 @@ class JobDetails : UIViewController,UICollectionViewDelegateFlowLayout, UICollec
         print("ended")
       //handleEndDeleteMode();
       case .failed:
-        print("falied")
+        print("failed")
       case .possible:
         print("possible)")
       }
@@ -140,7 +140,7 @@ class JobDetails : UIViewController,UICollectionViewDelegateFlowLayout, UICollec
   }
 
   
-  let  sortReverse = [true, true, false, false, true, true]
+  let  sortReverse = [true, true, false, false, true, true, false]
   
   func setupQueries(){
     let database = FIRDatabase.database();
@@ -161,6 +161,13 @@ class JobDetails : UIViewController,UICollectionViewDelegateFlowLayout, UICollec
     
     queries.append(SortBy(query: database.reference(withPath:"itemlists/" + jobKey + "/items")
       .queryOrdered(byChild: "isClaimActiveInverse"), sortBy: "By Claim"))
+    
+    queries.append(SortBy(query: database.reference(withPath:"itemlists/" + jobKey + "/items")
+      .queryOrdered(byChild: "numberOfPadsInverse"), sortBy: "By Pads"))
+    
+    queries.append(SortBy(query: database.reference(withPath:"itemlists/" + jobKey + "/items"),
+                          sortBy: "By Item#"))
+    
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -303,7 +310,7 @@ class JobDetails : UIViewController,UICollectionViewDelegateFlowLayout, UICollec
     } else {
       let vc = (self.storyboard?.instantiateViewController(withIdentifier: "ItemClaimViewController")) as! ItemClaimViewController;
       vc.jobKey = jobKey
-      vc.qrcCode = itemAndKey.key;
+      vc.qrCode = itemAndKey.key;
       vc.lifecycle = job.getLifecycle();
       self.navigationController?.pushViewController(vc, animated: true);
     }
@@ -378,8 +385,21 @@ class JobDetails : UIViewController,UICollectionViewDelegateFlowLayout, UICollec
       cell.sortLabel.text = String(item.getWeightLbs()) + " lbs"
     case 5: // claim
       cell.sortLabel.isHidden = true;
+    case 6: // pads
+      if (item.getNumberOfPads() == 0){
+        cell.sortLabel.text = "No Pads";
+      } else {
+        cell.sortLabel.text = String(item.getNumberOfPads()) + " Pads";
+      }
+      
+    case 7: // item number
+      cell.sortLabel.isHidden = false;
+      let dummy = "01234";
+      let range = dummy.startIndex..<dummy.endIndex
+      let substring = itemAndKey.key.substring(with: range)
+      cell.sortLabel.text = substring;
     default:
-      cell.sortLabel.text = "$" + String(item.getMonetaryValue())
+      cell.sortLabel.text = "";
     }
     
     cell.containerView.layer.borderWidth = 1.0;
@@ -432,9 +452,9 @@ class JobDetails : UIViewController,UICollectionViewDelegateFlowLayout, UICollec
 
     FIRDatabase.database().reference(withPath: "/qrcList/" + itemKey).removeValue();
     
-    let storage = FIRStorage.storage();
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate;
-    let storageRef = storage.reference(forURL: appDelegate.storageUrl!);
+    //let storage = FIRStorage.storage();
+    //let appDelegate = UIApplication.shared.delegate as! AppDelegate;
+    //let storageRef = storage.reference(forURL: appDelegate.storageUrl!);
     for (key, _) in imageReferences{
       let keyString = key as! String;
       var path = "/images/" + companyKey + "/";

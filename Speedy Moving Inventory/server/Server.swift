@@ -20,6 +20,39 @@ public class Server : NSObject{
     serverUrl = baseUrl;
   }
   
+  func sendEmailMessage(
+    recipients : String,
+    subject : String,
+    messageBody : String,
+    fromEmailAddress : String,
+    success : @escaping (String)->Void,
+    failure : @escaping (String)->Void)
+  {
+    request(serverUrl! + "/sendemail", method:HTTPMethod.get,
+            parameters: ["recipients" : recipients,
+                         "subject" : subject,
+                         "body" : messageBody,
+                         "fromemailaddress" : fromEmailAddress])
+    .validate()
+      .responseJSON {response in
+        switch response.result {
+        case .success:
+          if let value = response.result.value{
+            let response = ServletResponse(json: JSON(value))
+            if response.success{
+              success(response.errorMessage)
+            } else {
+              failure(response.errorMessage)
+            }
+          }
+        case .failure (let error):
+          failure(error.localizedDescription)
+        }
+    }
+    
+  }
+    
+  
  
   func sendNewSignoffEmailMessage(
     recipients: String,

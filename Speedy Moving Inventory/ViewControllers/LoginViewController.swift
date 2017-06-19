@@ -21,7 +21,7 @@ class LoginViewController :  UIViewController, UITextFieldDelegate, UITextViewDe
   @IBOutlet weak var buttonSignIn: UIButton!
   @IBOutlet weak var buttonForgotPassword: UIButton!
   
-   @IBOutlet weak var checkRememberMe: UISwitch!
+  @IBOutlet weak var checkRememberMe: UISwitch!
   @IBOutlet weak var workingView: UIView!
   
   @IBOutlet weak var loginForm: UIView!

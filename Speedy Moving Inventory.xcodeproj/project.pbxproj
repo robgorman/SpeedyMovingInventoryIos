@@ -21,6 +21,14 @@
 		D43AEA2C1E1AAD59003FEC46 /* ChooseCompanyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43AEA2A1E1AA653003FEC46 /* ChooseCompanyViewController.swift */; };
 		D43AEA2E1E1AB1CC003FEC46 /* ChooseCompanyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43AEA2D1E1AB1CC003FEC46 /* ChooseCompanyTableViewCell.swift */; };
 		D43AEA2F1E1AB286003FEC46 /* ChooseCompanyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43AEA2D1E1AB1CC003FEC46 /* ChooseCompanyTableViewCell.swift */; };
+		D442E6FF1E97DA3A0015B154 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D442E6FE1E97DA3A0015B154 /* ScannerViewController.swift */; };
+		D442E7001E97DF4C0015B154 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D442E6FE1E97DA3A0015B154 /* ScannerViewController.swift */; };
+		D442E7021E97E1C20015B154 /* ScannerResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D442E7011E97E1C20015B154 /* ScannerResult.swift */; };
+		D442E7041E97E2670015B154 /* ScannerCodeReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D442E7031E97E2670015B154 /* ScannerCodeReader.swift */; };
+		D442E7051E97E3410015B154 /* ScannerResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D442E7011E97E1C20015B154 /* ScannerResult.swift */; };
+		D442E7061E97E3410015B154 /* ScannerCodeReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D442E7031E97E2670015B154 /* ScannerCodeReader.swift */; };
+		D442E7081E980BCA0015B154 /* tada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D442E7071E980BCA0015B154 /* tada.mp3 */; };
+		D442E7091E980BCA0015B154 /* tada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D442E7071E980BCA0015B154 /* tada.mp3 */; };
 		D44511911D9ECDE600D683A4 /* Hud.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44511901D9ECDE600D683A4 /* Hud.swift */; };
 		D454F8561E031C800065F22D /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = D454F8541E031C800065F22D /* Server.swift */; };
 		D454F8571E031C800065F22D /* ServletResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D454F8551E031C800065F22D /* ServletResponse.swift */; };
@@ -129,6 +137,8 @@
 		D4EF0E361DE4FCE100B4CD6F /* MovingItemPickTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EF0E351DE4FCE100B4CD6F /* MovingItemPickTableCell.swift */; };
 		D4F2729B1DA8670D005CB3DF /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F2729A1DA8670D005CB3DF /* SpinnerViewController.swift */; };
 		D4F2729D1DA867EA005CB3DF /* SpinnerTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F2729C1DA867EA005CB3DF /* SpinnerTableCell.swift */; };
+		D4FAF07F1ECA9E8700B78C0D /* SignOffEmailSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FAF07E1ECA9E8700B78C0D /* SignOffEmailSender.swift */; };
+		D4FAF0801ECA9E8700B78C0D /* SignOffEmailSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FAF07E1ECA9E8700B78C0D /* SignOffEmailSender.swift */; };
 		D4FB41A11D9D5C4000F111D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FB41A01D9D5C4000F111D8 /* AppDelegate.swift */; };
 		D4FB41A61D9D5C4000F111D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4FB41A41D9D5C4000F111D8 /* Main.storyboard */; };
 		D4FB41A81D9D5C4000F111D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4FB41A71D9D5C4000F111D8 /* Assets.xcassets */; };
@@ -158,6 +168,10 @@
 		D43AEA271E19B199003FEC46 /* UserCompanyAssignment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCompanyAssignment.swift; sourceTree = "<group>"; };
 		D43AEA2A1E1AA653003FEC46 /* ChooseCompanyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseCompanyViewController.swift; sourceTree = "<group>"; };
 		D43AEA2D1E1AB1CC003FEC46 /* ChooseCompanyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseCompanyTableViewCell.swift; sourceTree = "<group>"; };
+		D442E6FE1E97DA3A0015B154 /* ScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
+		D442E7011E97E1C20015B154 /* ScannerResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerResult.swift; sourceTree = "<group>"; };
+		D442E7031E97E2670015B154 /* ScannerCodeReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerCodeReader.swift; sourceTree = "<group>"; };
+		D442E7071E980BCA0015B154 /* tada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tada.mp3; sourceTree = "<group>"; };
 		D44511901D9ECDE600D683A4 /* Hud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hud.swift; sourceTree = "<group>"; };
 		D44511931D9ECF1900D683A4 /* SpeedyMovingInventory-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SpeedyMovingInventory-Bridging-Header.h"; sourceTree = "<group>"; };
 		D454F8541E031C800065F22D /* Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
@@ -211,6 +225,7 @@
 		D4EF0E351DE4FCE100B4CD6F /* MovingItemPickTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovingItemPickTableCell.swift; sourceTree = "<group>"; };
 		D4F2729A1DA8670D005CB3DF /* SpinnerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
 		D4F2729C1DA867EA005CB3DF /* SpinnerTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerTableCell.swift; sourceTree = "<group>"; };
+		D4FAF07E1ECA9E8700B78C0D /* SignOffEmailSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignOffEmailSender.swift; sourceTree = "<group>"; };
 		D4FB419D1D9D5C4000F111D8 /* Speedy Moving Inventory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Speedy Moving Inventory.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4FB41A01D9D5C4000F111D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4FB41A51D9D5C4000F111D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -278,12 +293,14 @@
 				D41AE2D81D9ECD7900313693 /* MBProgressHUD.h */,
 				D41AE2D91D9ECD7900313693 /* MBProgressHUD.m */,
 			);
-			path = MBProgressHud;
+			name = MBProgressHud;
+			path = ../MBProgressHud;
 			sourceTree = "<group>";
 		};
 		D41F27D21DA2C7B90079EB19 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D442E7071E980BCA0015B154 /* tada.mp3 */,
 				D45C11AF1E42BC7D0054F080 /* negative_beep.wav */,
 				D45C11B01E42BC7D0054F080 /* alreadyscanned.mp3 */,
 				D45C11B11E42BC7D0054F080 /* item_not_found.mp3 */,
@@ -342,6 +359,10 @@
 				D4EA9A351DA1A47E00D983A3 /* SortByViewController.swift */,
 				D4F2729C1DA867EA005CB3DF /* SpinnerTableCell.swift */,
 				D4F2729A1DA8670D005CB3DF /* SpinnerViewController.swift */,
+				D442E6FE1E97DA3A0015B154 /* ScannerViewController.swift */,
+				D442E7011E97E1C20015B154 /* ScannerResult.swift */,
+				D442E7031E97E2670015B154 /* ScannerCodeReader.swift */,
+				D41AE2D71D9ECD7900313693 /* MBProgressHud */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -375,6 +396,7 @@
 				D43137F41D9EBBAD00B5A4B9 /* BundleExtension.swift */,
 				D483D2261DA1790900ED7DE5 /* Colors.swift */,
 				D45F4D521DA2C0FB00E34CB0 /* Utility.swift */,
+				D4FAF07E1ECA9E8700B78C0D /* SignOffEmailSender.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -410,7 +432,6 @@
 				D41F27D21DA2C7B90079EB19 /* Sounds */,
 				D45F4D541DA2C58E00E34CB0 /* QRCodeReader */,
 				D46727691D9F00930010A1DD /* ViewControllers */,
-				D41AE2D71D9ECD7900313693 /* MBProgressHud */,
 				D4EC5CC01D9D90FA00DB00D3 /* Utility */,
 				D4EC5CAB1D9D7FCF00DB00D3 /* model */,
 				D4FB41A01D9D5C4000F111D8 /* AppDelegate.swift */,
@@ -493,7 +514,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Speedy Moving Inventory";
 				TargetAttributes = {
 					D4A86E971E008CE800F4702E = {
@@ -531,6 +552,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D442E7091E980BCA0015B154 /* tada.mp3 in Resources */,
 				D45C11B71E42BEE00054F080 /* negative_beep.wav in Resources */,
 				D45C11B81E42BEE00054F080 /* alreadyscanned.mp3 in Resources */,
 				D45C11B91E42BEE00054F080 /* item_not_found.mp3 in Resources */,
@@ -547,6 +569,7 @@
 			files = (
 				D4FB41AB1D9D5C4000F111D8 /* LaunchScreen.storyboard in Resources */,
 				D45C11B31E42BC7D0054F080 /* negative_beep.wav in Resources */,
+				D442E7081E980BCA0015B154 /* tada.mp3 in Resources */,
 				D45C11B61E42BC7D0054F080 /* success.mp3 in Resources */,
 				D45C11B41E42BC7D0054F080 /* alreadyscanned.mp3 in Resources */,
 				D4FB41A81D9D5C4000F111D8 /* Assets.xcassets in Resources */,
@@ -682,8 +705,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D442E7051E97E3410015B154 /* ScannerResult.swift in Sources */,
+				D442E7061E97E3410015B154 /* ScannerCodeReader.swift in Sources */,
+				D442E7001E97DF4C0015B154 /* ScannerViewController.swift in Sources */,
 				D45C11BD1E42C6940054F080 /* ScanRecord.swift in Sources */,
 				D43AEA2F1E1AB286003FEC46 /* ChooseCompanyTableViewCell.swift in Sources */,
+				D4FAF0801ECA9E8700B78C0D /* SignOffEmailSender.swift in Sources */,
 				D43AEA2C1E1AAD59003FEC46 /* ChooseCompanyViewController.swift in Sources */,
 				D43AEA291E19B6FE003FEC46 /* UserCompanyAssignment.swift in Sources */,
 				D454F8581E03218A0065F22D /* Server.swift in Sources */,
@@ -749,14 +776,17 @@
 				D467277B1D9F0D320010A1DD /* JobSummary.swift in Sources */,
 				D48618C11DEF1FEE008E7C61 /* PrintViewController.swift in Sources */,
 				D4EC5CD41D9DAEE800DB00D3 /* FirebaseDataObject.swift in Sources */,
+				D4FAF07F1ECA9E8700B78C0D /* SignOffEmailSender.swift in Sources */,
 				D45F4D5F1DA2C58E00E34CB0 /* QRCodeReaderViewControllerBuilder.swift in Sources */,
 				D45F4D5C1DA2C58E00E34CB0 /* QRCodeReader.swift in Sources */,
+				D442E6FF1E97DA3A0015B154 /* ScannerViewController.swift in Sources */,
 				D45F4D601DA2C58E00E34CB0 /* ReaderOverlayView.swift in Sources */,
 				D41F27E01DA2F2F30079EB19 /* EditItemViewController.swift in Sources */,
 				D4EF0E361DE4FCE100B4CD6F /* MovingItemPickTableCell.swift in Sources */,
 				D46727791D9F00A60010A1DD /* JobViewController.swift in Sources */,
 				D467277D1D9F0D430010A1DD /* JobDetails.swift in Sources */,
 				D483D2271DA1790900ED7DE5 /* Colors.swift in Sources */,
+				D442E7041E97E2670015B154 /* ScannerCodeReader.swift in Sources */,
 				D4EC5CCB1D9D90FA00DB00D3 /* TextUtils.swift in Sources */,
 				D44511911D9ECDE600D683A4 /* Hud.swift in Sources */,
 				D4EC5CB41D9D7FCF00DB00D3 /* Address.swift in Sources */,
@@ -792,6 +822,7 @@
 				D46727741D9F00930010A1DD /* JobTableViewCell.swift in Sources */,
 				D48618C31DEF21D8008E7C61 /* PrintItemTableCell.swift in Sources */,
 				D4EF0E341DE4FCBB00B4CD6F /* MovingItemPickViewController.swift in Sources */,
+				D442E7021E97E1C20015B154 /* ScannerResult.swift in Sources */,
 				D43AEA281E19B199003FEC46 /* UserCompanyAssignment.swift in Sources */,
 				D46727771D9F00930010A1DD /* MainNavigationController.swift in Sources */,
 				D454F8571E031C800065F22D /* ServletResponse.swift in Sources */,

@@ -65,6 +65,23 @@ class ChooseCompanyViewController : UIViewController, UITableViewDelegate, UITab
         //self.logout();
       } else if (self.assignments.count == 1){
         // launch jobsVC
+        let uca = self.assignments[0];
+        if uca.getRole() == Role.Customer {
+          UiUtility.showAlertWithDismissAction("Customer Login Not Supported", message: "We apologize, but our mobile app does not support customer logins at this time. Please try the web interface at https://app.speedymovinginventory.com", presenter: self,
+          dismiss:{_ in
+            do{
+              try FIRAuth.auth()?.signOut()
+            } catch {
+              print("logout failed");
+            }
+            appDelegate.resetCredentials();
+            exit(0);
+          });
+         
+          return
+        }
+          
+        
         appDelegate.userCompanyAssignment = self.assignments[0];
         let companyKey = appDelegate.userCompanyAssignment?.companyKey;
         // TODO set appdelegate current co

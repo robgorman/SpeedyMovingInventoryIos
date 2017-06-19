@@ -42,6 +42,7 @@ class EditItemViewController : UIViewController,  UITextViewDelegate,  UICollect
   @IBOutlet weak var pickButton: UIButton!
   
   @IBOutlet weak var textViewDescription: UITextView!
+  @IBOutlet weak var damageDescription: UITextView!
   // @IBOutlet weak var sliderValue: UISlider!
   @IBOutlet weak var sliderPads: UISlider!
   @IBOutlet weak var sliderVolume: UISlider!
@@ -126,8 +127,10 @@ class EditItemViewController : UIViewController,  UITextViewDelegate,  UICollect
     super.viewWillDisappear(animated)
     if item != nil{
       item.desc = textViewDescription.text
+      item.damageDescription = damageDescription.text;
       item.specialHandling = textViewSpecialHandling.text
       itemRef.setValue(item.asFirebaseObject())
+      
     }
    
     itemRef.removeAllObservers()
@@ -152,8 +155,11 @@ class EditItemViewController : UIViewController,  UITextViewDelegate,  UICollect
     labelLbsPerFt3.text = text;
     poundsPerCubicFeet = Int((appDelegate.currentCompany?.poundsPerCubicFoot)!)
     
-    textViewDescription.layer.borderColor = Colors().speedyLight.cgColor;
+    textViewDescription.layer.borderColor = Colors().speedyLight.cgColor
     textViewDescription.layer.borderWidth = 1.0
+    
+    damageDescription.layer.borderColor = Colors().speedyLight.cgColor
+    damageDescription.layer.borderWidth = 1.0
     
     textViewSpecialHandling.layer.borderColor = Colors().speedyLight.cgColor;
     textViewSpecialHandling.layer.borderWidth = 1.0
@@ -170,6 +176,12 @@ class EditItemViewController : UIViewController,  UITextViewDelegate,  UICollect
     longPressGestureRecogizer.delaysTouchesBegan = true;
     self.collectionView.addGestureRecognizer(longPressGestureRecogizer);
     
+    let dummy = "01234";
+    let range = dummy.startIndex..<dummy.endIndex
+    let substring = qrcCode.substring(with: range)
+    navigationItem.title = "Item: " + substring
+    
+
   }
 
   
@@ -464,6 +476,7 @@ class EditItemViewController : UIViewController,  UITextViewDelegate,  UICollect
     switchSync.isOn = syncWeightAndVolume;
     
     textViewDescription.text = item.desc!
+    damageDescription.text = item.damageDescription!
     buttonCategory.setTitle(item.category! + "  >", for: .normal)
     buttonPackedBy.setTitle(item.packedBy!  + "  >", for: .normal)
     
@@ -891,6 +904,7 @@ class EditItemViewController : UIViewController,  UITextViewDelegate,  UICollect
       let poundsPerCubicFoot = Int((appDelegate.currentCompany?.poundsPerCubicFoot)!)
       // TODO you get the whole desc
       outer.item.desc = description.itemName
+      
       outer.item.setVolume(volume: description.getCubicFeet())
       outer.item.setVolume(volume: description.getCubicFeet() * Float(poundsPerCubicFoot!));
       outer.item.setIsBox(value: description.getIsBox());
@@ -928,6 +942,7 @@ class EditItemViewController : UIViewController,  UITextViewDelegate,  UICollect
   func enableUserInterface(){
     switchIsBox.isEnabled = true;
     textViewDescription.isEditable = true;
+    damageDescription.isEditable = true;
     pickButton.isEnabled = true;
     switchDisassembled.isEnabled = true;
     buttonCategory.isEnabled = true;

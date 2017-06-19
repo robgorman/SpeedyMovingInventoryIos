@@ -18,4 +18,13 @@ class UiUtility{
     presenter.present(alertController, animated: true, completion: nil)
 
   }
+  static func showAlertWithDismissAction(_ title : String, message:String, presenter : UIViewController,
+                        dismiss:@escaping (UIAlertAction) ->Void){
+    let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    let defaultAction = UIAlertAction(title:"OK", style: .default, handler:dismiss)
+    alertController.addAction(defaultAction)
+    presenter.present(alertController, animated: true, completion: nil)
+    
+  }
+  
 }

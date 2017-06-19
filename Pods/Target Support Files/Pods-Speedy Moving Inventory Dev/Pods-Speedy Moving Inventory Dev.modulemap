@@ -1,0 +1,6 @@
+framework module Pods_Speedy_Moving_Inventory_Dev {
+  umbrella header "Pods-Speedy Moving Inventory Dev-umbrella.h"
+
+  export *
+  module * { export * }
+}

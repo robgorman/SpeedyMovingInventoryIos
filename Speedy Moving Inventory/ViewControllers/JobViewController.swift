@@ -15,7 +15,7 @@ import CoreLocation
 
 
 
-class JobViewController : UIViewController, QRCodeReaderViewControllerDelegate, CLLocationManagerDelegate {
+class JobViewController : UIViewController, ScannerViewControllerDelegate, CLLocationManagerDelegate, SenderListener{
   
   @IBOutlet weak var segmentedControl: UISegmentedControl!
   @IBOutlet weak var summaryView: UIView!
@@ -61,14 +61,19 @@ class JobViewController : UIViewController, QRCodeReaderViewControllerDelegate, 
   var user : User!;
   var loading = false;
   
-  var processingCode = false;
-  var allowItemAddOutsideNew = true;
+  //var processingCode = false;
+  var allowItemAddOutsideNew = false;
   // Good practice: create the reader lazily to avoid cpu overload during the
   // initialization and each time we need to scan a QRCode
-  lazy var readerVC = QRCodeReaderViewController(builder: QRCodeReaderViewControllerBuilder {
-    var o = $0;
-    o.reader = QRCodeReader(metadataObjectTypes: [AVMetadataObjectTypeQRCode])
-  })
+  
+ // var readerVC = read from storyboard
+  //let readerVC = (self.storyboard?.instantiateViewController(withIdentifier: "ScannerViewController"))
+    //as! ScannerViewController;
+  
+  //lazy var readerVC = QRCodeReaderViewController(builder: QRCodeReaderViewControllerBuilder {
+  //  var o = $0;
+ //   o.reader = QRCodeReader(metadataObjectTypes: [AVMetadataObjectTypeQRCode])
+ // })
 
  
   
@@ -379,16 +384,15 @@ class JobViewController : UIViewController, QRCodeReaderViewControllerDelegate, 
       return;
     }
     
-    
+    // var readerVC = read from storyboard
+    let readerVC = (self.storyboard?.instantiateViewController(withIdentifier: "ScannerViewController"))
+    as! ScannerViewController;
+  
     // Retrieve the QRCode content
     // By using the delegate pattern
     readerVC.delegate = self
-    
-    
-    //readerVC.showTorchButton = true;
-    
     // Or by using the closure pattern
-    readerVC.completionBlock = { (result: QRCodeReaderResult?) in
+    readerVC.completionBlock = { (result: ScannerResult?) in
       if result != nil{
         print(result!)
       }
@@ -399,7 +403,7 @@ class JobViewController : UIViewController, QRCodeReaderViewControllerDelegate, 
   
   @IBAction func scanPressed(_ sender: AnyObject) {
     if canScan{
-      self.readerVC.messageLabel.text = "Point camera at a QRC Code"
+      //self.readerVC.messageLabel.text = "Point camera at a QRC Code"
       self.launchScanActivity()
     } else {
       UiUtility.showAlert("Cannot Access Scanner", message: "You must enable location services in order to use the scanner.", presenter: self)
@@ -409,39 +413,48 @@ class JobViewController : UIViewController, QRCodeReaderViewControllerDelegate, 
   // MARK: - QRCodeReaderViewController Delegate Methods
   
   //func reader(_ reader: QRCodeReader.QRCodeReaderViewController, didScanResult result: QRCodeReader.QRCodeReaderResult) {
-  func reader(_ codeReaderViewController: QRCodeReaderViewController, didScanResult result: QRCodeReaderResult) {
-    if processingCode{
-      return;
-    }
-    processingCode = true
-    barcodeScanned(code: result.value, codeReaderViewController: codeReaderViewController);
+  func reader(_ scannerViewController: ScannerViewController, didScanResult result: ScannerResult) {
+  
+    barcodeScanned(code: result.value, scannerViewController: scannerViewController);
         //dismiss(animated: true, completion: nil)
   }
  
   var itemKeyRef : FIRDatabaseReference!
   
-  func barcodeScanned(code : String, codeReaderViewController : QRCodeReaderViewController){
+  func showNext(scannerViewController : ScannerViewController){
+    scannerViewController.stopScanning()
+    scannerViewController.showNext()
+    
+  }
+  
+  func barcodeScanned(code : String, scannerViewController : ScannerViewController){
     if !Utility.isQrcCodeValid(code: code){
-      invalidCodeUserFeedback(codeReaderViewContoller: codeReaderViewController);
-      processingCode = false;
+      invalidCodeUserFeedback(scannerViewController: scannerViewController);
+      showNext(scannerViewController: scannerViewController);
+      //processingCode = false;
       return;
     }
     //codeReaderViewContoller.messageLabel.text = "Point camera at a QRC Code"
     itemKeyRef = FIRDatabase.database().reference(withPath: "qrcList/" + code)
     
     itemKeyRef.observeSingleEvent(of: FIRDataEventType.value, with: {(snapshot) in
+      // TODO I don't think ios has qrc replacement feature.
       if !snapshot.exists(){
         // item is new
         if self.job.getLifecycle() != Lifecycle.New && !self.allowItemAddOutsideNew{
           // its an error
-         
-          self.negativeFeedback(codeReaderViewController: codeReaderViewController, message: "This does not belong to this job.");
-          self.processingCode = false;
+          scannerViewController.messageLabel.text = "Item not found."
+          Utility.playSound(file: "negative_beep", type: "wav");
+          AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+        
+          self.showNext(scannerViewController: scannerViewController);
+          //self.processingCode = false;
         } else {
-          self.positiveFeedback(codeReaderViewController: codeReaderViewController)
+          self.positiveFeedback(scannerViewController: scannerViewController)
           let isOutOfPhase = self.job.getLifecycle() != Lifecycle.New;
-          self.createNewItem(job: self.job, code: code, codeReaderViewContoller: codeReaderViewController, itemIsOutOfPhase: isOutOfPhase)
-          self.processingCode = false;
+          self.createNewItem(job: self.job, code: code, scannerViewController: scannerViewController, itemIsOutOfPhase: isOutOfPhase)
+          //self.processingCode = false;
+          self.showNext(scannerViewController : scannerViewController);
           self.allowItemAddOutsideNew = false;
         }
         
@@ -450,27 +463,31 @@ class JobViewController : UIViewController, QRCodeReaderViewControllerDelegate, 
         // item exists see if its in ths job
         let jobKey = snapshot.value as! String
         if jobKey != self.jobKey{
-          self.negativeFeedback( codeReaderViewController: codeReaderViewController, message: "This item belongs to another job")
-          self.processingCode = false;
+          self.negativeFeedback( scannerViewController: scannerViewController, message: "This item belongs to another job")
+          self.showNext(scannerViewController: scannerViewController);
         } else {
-          self.lookupSuccessFeedback(codeReaderViewController: codeReaderViewController)
+          //self.lookupSuccessFeedback(scannerViewController: scannerViewController)
           
           let itemRef = FIRDatabase.database().reference(withPath: "/itemlists/" + self.jobKey + "/items/" + code)
           itemRef.observeSingleEvent(of: FIRDataEventType.value, with: {(snapshot) in
             let item = Item(snapshot)
             
             if self.job.getLifecycle() == .New {
-              self.editItem(job: self.job, code: code, item: item, codeReaderViewController:  codeReaderViewController)
+              self.editItem(job: self.job, code: code, item: item, scannerViewController:  scannerViewController)
             } else { // for any other job lifecycle just mark as scanned
               let isScanned = item.getIsScanned();
               if isScanned {
-                self.alreadyScannedFeedback(codeReaderViewController: codeReaderViewController);
-                
+               
+                Utility.playSound(file: "alreadyscanned", type: "mp3");
+                scannerViewController.messageLabel.text = "Item " + String(code.characters.prefix(5)) + " has already been scanned."
+                AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+                self.showNext(scannerViewController: scannerViewController);
+
               } else {
                 // set item as scanned
                //let scanRecord = ScanRecord(Date(),
-                var latitude = 0.0;
-                var longitude = 0.0;
+                var latitude = 33.15809
+                var longitude = -117.350594
                 if self.currentLocation != nil{
                   latitude = (self.currentLocation?.latitude)!
                   longitude = (self.currentLocation?.longitude)!;
@@ -482,9 +499,32 @@ class JobViewController : UIViewController, QRCodeReaderViewControllerDelegate, 
                 ref.setValue(scanRecord.asFirebaseObject())
                 
                 FIRDatabase.database().reference(withPath: "/itemlists/" + self.jobKey + "/items/" + code ).child("isScanned").setValue(true)
+              
+                scannerViewController.messageLabel.text = "Item " + String(code.characters.prefix(5)) + " sucessfully scanned."
+                scannerViewController.checkMark.isHidden = false;
+                self.showNext(scannerViewController: scannerViewController);
+                Utility.playSound(file: "success", type: "mp3");
+                // test for all scanned
+                AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+                let refAllScanned = FIRDatabase.database().reference(withPath: "/itemlists/" + jobKey + "/items/")
+                refAllScanned.observeSingleEvent(of: FIRDataEventType.value, with: {(snapshot) in
+                  if (!snapshot.exists()){
+                    // error TBD
+                  } else {
+                    for next in snapshot.children {
+                      let nextSnap = next as! FIRDataSnapshot;
+                      let item = Item(nextSnap);
+                      if (!item.getIsScanned()){
+                        return;
+                      }
+                    }
+                    scannerViewController.messageLabel.text = (scannerViewController.messageLabel.text! + "\n" + "ALL ITEMS HAVE BEEN SCANNED!");
+                    Utility.playSound(file: "tada", type: "mp3");
+                  }
+                });
               }
             }
-            self.processingCode = false;
+            //self.processingCode = false;
           })
         }
       }
@@ -495,28 +535,30 @@ class JobViewController : UIViewController, QRCodeReaderViewControllerDelegate, 
   }
   
   
-  func alreadyScannedFeedback(codeReaderViewController : QRCodeReaderViewController){
-    codeReaderViewController.messageLabel.text = "This item has already been scanned."
-   
+  func alreadyScannedFeedback(scannerViewController : ScannerViewController){
+    
+    Utility.playSound(file: "alreadyscanned", type: "mp3");
+    scannerViewController.messageLabel.text = "This item has already been scanned."
     AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+    showNext(scannerViewController: scannerViewController);
   }
   
-  func lookupSuccessFeedback(codeReaderViewController : QRCodeReaderViewController){
+  func lookupSuccessFeedback(scannerViewController : ScannerViewController){
     Utility.playSound(file: "alreadyscanned", type: "mp3");
     AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
 
   }
   
-  func positiveFeedback(codeReaderViewController : QRCodeReaderViewController){
+  func positiveFeedback(scannerViewController : ScannerViewController){
     Utility.playSound(file: "success", type: "mp3");
   }
-  func negativeFeedback(codeReaderViewController : QRCodeReaderViewController, message : String){
-    codeReaderViewController.messageLabel.text = message
+  func negativeFeedback(scannerViewController : ScannerViewController, message : String){
+    scannerViewController.messageLabel.text = message
     Utility.playSound(file: "negative_beep", type: "wav");
      AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
   }
   
-  func createNewItem(job : Job, code : String, codeReaderViewContoller: QRCodeReaderViewController, itemIsOutOfPhase : Bool){
+  func createNewItem(job : Job, code : String, scannerViewController: ScannerViewController, itemIsOutOfPhase : Bool){
     let vc = (self.storyboard?.instantiateViewController(withIdentifier: "EditItemViewController")) as! EditItemViewController;
     vc.jobKey = jobKey
     vc.qrcCode = code;
@@ -524,11 +566,11 @@ class JobViewController : UIViewController, QRCodeReaderViewControllerDelegate, 
     vc.itemWasCreatedOutOfPhase = itemIsOutOfPhase;
     let backItem = UIBarButtonItem();
     backItem.title = "Scan Next";
-    codeReaderViewContoller.navigationItem.backBarButtonItem = backItem;
-    codeReaderViewContoller.navigationController?.pushViewController(vc, animated: true);
+    scannerViewController.navigationItem.backBarButtonItem = backItem;
+    scannerViewController.navigationController?.pushViewController(vc, animated: true);
   }
   
-  func editItem(job : Job, code : String, item : Item, codeReaderViewController: QRCodeReaderViewController){
+  func editItem(job : Job, code : String, item : Item, scannerViewController: ScannerViewController){
     let vc = (self.storyboard?.instantiateViewController(withIdentifier: "EditItemViewController")) as! EditItemViewController;
     vc.jobKey = jobKey
     vc.qrcCode = code;
@@ -536,24 +578,20 @@ class JobViewController : UIViewController, QRCodeReaderViewControllerDelegate, 
     vc.itemWasCreatedOutOfPhase = false;
     let backItem = UIBarButtonItem();
     backItem.title = "Scan Next";
-    codeReaderViewController.navigationItem.backBarButtonItem = backItem;
+    scannerViewController.navigationItem.backBarButtonItem = backItem;
 
-    codeReaderViewController.navigationController?.pushViewController(vc, animated: true);
+    scannerViewController.navigationController?.pushViewController(vc, animated: true);
   }
 
   
-  func invalidCodeUserFeedback(codeReaderViewContoller : QRCodeReaderViewController){
-    var soundId : SystemSoundID = 0;
-    let filePath = Bundle.main.path(forResource: "negative_beep_2", ofType: "wav")
-    let soundURL = NSURL(fileURLWithPath: filePath!)
- 
-    AudioServicesCreateSystemSoundID(soundURL, &soundId)
-    AudioServicesPlaySystemSound(soundId)
-    
-    codeReaderViewContoller.messageLabel.text = "Invalid QRC Code -- Not a Speedy Moving Inventory Code"
+  func invalidCodeUserFeedback(scannerViewController : ScannerViewController){
+    Utility.playSound(file: "negative_beep", type: "wav")
+  
+    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+    scannerViewController.messageLabel.text = "Invalid QR Code -- Not a Speedy Moving Inventory Code"
   }
   
-  func readerDidCancel(_ reader: QRCodeReaderViewController) {
+  func readerDidCancel(_ reader: ScannerViewController) {
     //dismiss(animated: true, completion: nil)
     
     reader.dismiss(animated: true, completion: nil)
@@ -588,7 +626,15 @@ class JobViewController : UIViewController, QRCodeReaderViewControllerDelegate, 
           self.markAllItemsUnScanned();
           
           DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { // in tenth of sec.
-             self.sendSignoffEmail()
+             //self.sendSignoffEmail()
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let sender = SignOffEmailSender(presenter: self,
+                                             mailServer: appDelegate.mailServer!,
+                                             recipientList: self.recipientList,
+                                             company: appDelegate.currentCompany!,
+                                             companyKey: self.companyKey,
+                                             jobKey: self.jobKey)
+            sender.send(listener: self)
           }
           
         }
@@ -596,6 +642,14 @@ class JobViewController : UIViewController, QRCodeReaderViewControllerDelegate, 
       }
       present(vc, animated: true, completion: nil)
     }
+  }
+  
+  func sendSuccess(){
+    UiUtility.showAlert("Sign Off Email Sent", message: "Messages sent successfully.", presenter: self)
+  }
+  
+  func sendFailure(message : String){
+    UiUtility.showAlert("Sign Off Email Not Sent", message: message, presenter: self)
   }
   
   func markAllItemsUnScanned(){
@@ -606,6 +660,7 @@ class JobViewController : UIViewController, QRCodeReaderViewControllerDelegate, 
     }
 
   }
+  /*
   
   func sendLifecycleSignOffEmail(){
     let delegate = UIApplication.shared.delegate as! AppDelegate
@@ -673,7 +728,7 @@ class JobViewController : UIViewController, QRCodeReaderViewControllerDelegate, 
       sendLifecycleSignOffEmail();
     }
   }
-  
+  */
   func allItemsMarkedAsScanned() -> Bool{
     for (_, item) in itemsMap{
       if !item.getIsScanned(){
@@ -742,7 +797,7 @@ class JobViewController : UIViewController, QRCodeReaderViewControllerDelegate, 
         UiUtility.showAlert("Incorrect Job Status", message: "The Job status is New. Use the scan button at the bottom of the screen to scan/add items for a new job. This option can only be used to add items after initial job signoff.", presenter: self)
       } else{
         if self.canScan{
-          self.readerVC.messageLabel.text = "Point camera at a QRC Code"
+          
           //codeReaderViewController.messageLabel.text = "Point camera at a QRC Code "
           self.allowItemAddOutsideNew = true;
           self.launchScanActivity()

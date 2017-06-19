@@ -7,21 +7,18 @@
 //
 
 import Foundation
-
 import Foundation
 import Firebase
 import AVFoundation
 import AudioToolbox
 import CoreLocation
 
-
 class ItemClaimViewController : UIViewController, UITextFieldDelegate, UITextViewDelegate,
   UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,
-  UIImagePickerControllerDelegate, UINavigationControllerDelegate, QRCodeReaderViewControllerDelegate,
-  CLLocationManagerDelegate{
+  UIImagePickerControllerDelegate, UINavigationControllerDelegate,
+  CLLocationManagerDelegate, ScannerViewControllerDelegate{
   
   @IBOutlet weak var descriptionTextView: UITextView!
-  
   @IBOutlet weak var valueLabel: UILabel!
   @IBOutlet weak var numberOfPadsLabel: UILabel!
   @IBOutlet weak var categoryLabel: UILabel!
@@ -38,7 +35,6 @@ class ItemClaimViewController : UIViewController, UITextFieldDelegate, UITextVie
   @IBOutlet weak var disassembledLabel: UILabel!
   @IBOutlet weak var noPhotosLabel: UILabel!
   @IBOutlet weak var scanOverrideSwitch: UISwitch!
-  
   @IBOutlet weak var photosLoadingIndicator: UIActivityIndicatorView!
   
   lazy var readerVC = QRCodeReaderViewController(builder: QRCodeReaderViewControllerBuilder {
@@ -49,14 +45,13 @@ class ItemClaimViewController : UIViewController, UITextFieldDelegate, UITextVie
   // lifecycle is a param
   var lifecycle :Lifecycle!
   var jobKey : String!
-  var qrcCode : String!
+  var qrCode : String!
   
   var imageItems : [ImageItem] = [];
   var itemRef : FIRDatabaseReference!
   var item : Item!
 
   var isLoadingFirstTime : Bool = true;
-  var processingCode = false;
   
   let locationManager = CLLocationManager();
   var currentLocation : CLLocationCoordinate2D?
@@ -107,16 +102,13 @@ class ItemClaimViewController : UIViewController, UITextFieldDelegate, UITextVie
       }
       let appDelegate = UIApplication.shared.delegate as! AppDelegate
       let scanRecord = ScanRecord(scanDateTime: Date(), latitude: latitude, longitude: longitude, uidOfScanner: (appDelegate.currentUser?.uid)!,isScanOverride: true, lifecycle: self.lifecycle);
-      let ref = FIRDatabase.database().reference(withPath: "/scanHistory/" + qrcCode).childByAutoId()
+      let ref = FIRDatabase.database().reference(withPath: "/scanHistory/" + qrCode).childByAutoId()
       ref.setValue(scanRecord.asFirebaseObject())
 
     }
     item.setIsScanned(value: scanOverrideSwitch.isOn)
     item.setHasClaim(value:   isDamagedSwitch.isOn)
-
     itemRef.setValue(item.asFirebaseObject())
-    
-
   }
   
   override func viewWillDisappear(_ animated: Bool) {
@@ -127,21 +119,20 @@ class ItemClaimViewController : UIViewController, UITextFieldDelegate, UITextVie
     }
    
     itemRef.removeAllObservers()
-    
     locationManager.stopUpdatingLocation();
-
   }
+  
+  var settings : UIBarButtonItem?
   
   override func viewDidLoad(){
     super.viewDidLoad()
     
-    
     // TODO the settings menu should allow QRC code replacement, but its not working yet
-    //let settings = UIBarButtonItem(image: UIImage(named: "Settings"), style: .plain, target: self, action: #selector(JobViewController.settingsPressed))
+    let settings = UIBarButtonItem(image: UIImage(named: "Settings"), style: .plain, target: self, action: #selector(ItemClaimViewController.settingsPressed))
     
-    //self.navigationItem.rightBarButtonItem = settings
+    self.navigationItem.rightBarButtonItem = settings
 
-    itemRef = FIRDatabase.database().reference(withPath:"itemlists/" + jobKey + "/items/" + qrcCode)
+    itemRef = FIRDatabase.database().reference(withPath:"itemlists/" + jobKey + "/items/" + qrCode)
     
     claimNumberTextField.layer.borderColor = Colors().speedyLight.cgColor;
     claimNumberTextField.layer.borderWidth = 1.0
@@ -151,14 +142,34 @@ class ItemClaimViewController : UIViewController, UITextFieldDelegate, UITextVie
 
     isLoadingFirstTime = true;
     handleControlVisibility(0);
-
-
+    
+    setTitle(code: qrCode)
+    
+  }
+  
+  func setTitle(code : String){
+    let dummy = "01234";
+    let range = dummy.startIndex..<dummy.endIndex
+    let substring = code.substring(with: range)
+    navigationItem.title = "# " + substring
+  }
+  
+  func settingsPressed(){
+    let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+    let replaceQrcAction = UIAlertAction(title: "Re-Assign QRC", style: .default, handler: {(action) in
+      self.reassignQrc();
+    })
+    
+    alertController.addAction(replaceQrcAction)
+    
+    let presenter = alertController.popoverPresentationController;
+    presenter?.barButtonItem = settings;
+    present(alertController, animated: true, completion: nil)
   }
   
   func updateValuesFromItem(){
     
     // extract the images
-    
     imageItems = [];
     for (key, value) in item.imageReferences!{
       let stringkey = key as! String;
@@ -182,10 +193,8 @@ class ItemClaimViewController : UIViewController, UITextFieldDelegate, UITextVie
     
     handleControlVisibility(imageItems.count)
     imageCollectionView.reloadData()
-    
     scanOverrideSwitch.isOn = item.getIsScanned()
   }
-  
   
   @IBAction func takePicturePressed(_ sender: AnyObject) {
     if UIImagePickerController.isSourceTypeAvailable(
@@ -199,7 +208,6 @@ class ItemClaimViewController : UIViewController, UITextFieldDelegate, UITextVie
       imagePicker.allowsEditing = false
       
       self.present(imagePicker, animated: true, completion: nil)
-      
     }
   }
   
@@ -211,7 +219,6 @@ class ItemClaimViewController : UIViewController, UITextFieldDelegate, UITextVie
   }
   
   func resizeImage(image: UIImage, largestDim: Float) -> UIImage {
-    
     var newWidth : Float = 0.0
     var newHeight : Float = 0.0
     let width : Float = Float(image.size.width);
@@ -264,7 +271,7 @@ class ItemClaimViewController : UIViewController, UITextFieldDelegate, UITextVie
     let storage = FIRStorage.storage()
     let timeStampString = String(format:"%.0f", milliseconds)
     let payloadPart1 = "images/" + companyKey! + "/" + jobKey
-    let payload = payloadPart1 + "/" + qrcCode + "/" + timeStampString;
+    let payload = payloadPart1 + "/" + qrCode + "/" + timeStampString;
     let imageRef = storage.reference().child(payload)
     // Upload the file to the path "images/rivers.jpg"
     
@@ -288,12 +295,8 @@ class ItemClaimViewController : UIViewController, UITextFieldDelegate, UITextVie
         self.itemRef.child("imageReferences").setValue(self.item.imageReferences)
       }
       self.removeFile(filename: filename)
-
     }
-    
-   
     picker.dismiss(animated: true, completion: nil)
-    
   }
   
   func removeFile(filename : URL){
@@ -302,25 +305,7 @@ class ItemClaimViewController : UIViewController, UITextFieldDelegate, UITextVie
     } catch {
       print("file delete failed");
     }
-   
   }
-  
-//  func image(image: UIImage, didFinishSavingWithError error: NSErrorPointer, contextInfo:UnsafePointer<Void>) {
-//    
-//    if error != nil {
-//      let alert = UIAlertController(title: "Save Failed",
-//                                    message: "Failed to save image",
-//                                    preferredStyle: UIAlertControllerStyle.Alert)
-//      
-//      let cancelAction = UIAlertAction(title: "OK",
-//                                       style: .Cancel, handler: nil)
-//      
-//      alert.addAction(cancelAction)
-//      self.presentViewController(alert, animated: true,
-//                                 completion: nil)
-//    }
-//  }
-//  
   
   /// text field delegate
   func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool // return NO to disallow editing.
@@ -337,8 +322,6 @@ class ItemClaimViewController : UIViewController, UITextFieldDelegate, UITextVie
     return true;
   }
   
-  
-  
   func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'return' key pressed. return NO to ignore.
   {
     textField.resignFirstResponder()
@@ -350,7 +333,6 @@ class ItemClaimViewController : UIViewController, UITextFieldDelegate, UITextVie
       photosLoadingIndicator.isHidden = false;
       noPhotosLabel.isHidden = true;
       imageCollectionView.isHidden = true;
-
     } else {
        photosLoadingIndicator.isHidden = true;
       if imageCount == 0 {
@@ -362,13 +344,12 @@ class ItemClaimViewController : UIViewController, UITextFieldDelegate, UITextVie
       }
     }
   }
-  // data soruce
+  // data source
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
     let count = imageItems.count;
     return count
   }
-  
   
   // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
@@ -400,7 +381,6 @@ class ItemClaimViewController : UIViewController, UITextFieldDelegate, UITextVie
     print(cellHeight)
     return CGSize(width: cellWidth, height: cellHeight);
   }
-
   
   func loadImage(_ imageUri : String, cell : ItemDetailsImageCell) {
     
@@ -418,7 +398,6 @@ class ItemClaimViewController : UIViewController, UITextFieldDelegate, UITextVie
       AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
       updateItemFromControls()
     }
-   
   }
   
   @IBAction func onDamageSwitchChanged(_ sender: UISwitch) {
@@ -432,42 +411,30 @@ class ItemClaimViewController : UIViewController, UITextFieldDelegate, UITextVie
     takePictureButton.isEnabled = true;
   }
   
-  /*
-  func settingsPressed(){
-    let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-    let printAction = UIAlertAction(title: "Re-assign QRC Code", style: .default, handler: {(action) in
-      self.launchScanActivity()
-    })
-    
-    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {(action) in
-      self.cancel()
-    })
-    
-    alertController.addAction(printAction)
-    alertController.addAction(cancelAction)
-    
-    present(alertController, animated: true, completion: nil)
-    
+  func reassignQrc(){
+    launchScanActivity();
   }
- */
   
   func launchScanActivity(){
-    
     if lifecycle == Lifecycle.Delivered{
-      UiUtility.showAlert("Job is Complete", message: "No further re-labling is possible", presenter: self)
+      UiUtility.showAlert("Job is Complete", message: "The Job is complete. No further scanning is possible", presenter: self)
       return;
     }
+    
+    // var readerVC = read from storyboard
+    let readerVC = (self.storyboard?.instantiateViewController(withIdentifier: "ScannerViewController"))
+      as! ScannerViewController;
+    
     // Retrieve the QRCode content
     // By using the delegate pattern
     readerVC.delegate = self
-    
     // Or by using the closure pattern
-    readerVC.completionBlock = { (result: QRCodeReaderResult?) in
+    readerVC.completionBlock = { (result: ScannerResult?) in
       if result != nil{
         print(result!)
       }
     }
-    
+    readerVC.prompt = "Point Camera at Replacement QR Code"
     self.navigationController?.pushViewController(readerVC, animated: true)
   }
 
@@ -475,73 +442,70 @@ class ItemClaimViewController : UIViewController, UITextFieldDelegate, UITextVie
     // nothing to do
   }
   // MARK: - QRCodeReaderViewController Delegate Methods
-
-  //func reader(_ reader: QRCodeReader.QRCodeReaderViewController, didScanResult result: QRCodeReader.QRCodeReaderResult) {
-  func reader(_ codeReaderViewContoller: QRCodeReaderViewController, didScanResult result: QRCodeReaderResult) {
-    if processingCode{
-      return;
-    }
-    processingCode = true
-    barcodeScanned(newCode: result.value, codeReaderViewContoller: codeReaderViewContoller);
-    //dismiss(animated: true, completion: nil)
+  func reader(_ scannerViewController: ScannerViewController, didScanResult result: ScannerResult) {
+    barcodeScanned(newCode: result.value, scannerViewController: scannerViewController)
   }
-
   
-  func invalidCodeUserFeedback(codeReaderViewContoller : QRCodeReaderViewController){
+  func readerDidCancel(_ reader: ScannerViewController) {
+    reader.dismiss(animated: true, completion: nil)
+  }
+  
+  func invalidCodeUserFeedback(scannerViewController : ScannerViewController, message : String){
     var soundId : SystemSoundID = 0;
-    let filePath = Bundle.main.path(forResource: "negative_beep_2", ofType: "wav")
+    let filePath = Bundle.main.path(forResource: "negative_beep", ofType: "wav")
     let soundURL = NSURL(fileURLWithPath: filePath!)
     
     AudioServicesCreateSystemSoundID(soundURL, &soundId)
     AudioServicesPlaySystemSound(soundId)
     
-    codeReaderViewContoller.messageLabel.text = "Invalid QRC Code -- Not a Speedy Moving Inventory Code"
+    scannerViewController.messageLabel.text = message
   }
   
-
-  
-  func barcodeScanned(newCode : String, codeReaderViewContoller : QRCodeReaderViewController){
+  func barcodeScanned(newCode : String, scannerViewController : ScannerViewController){
     if !Utility.isQrcCodeValid(code: newCode){
-      invalidCodeUserFeedback(codeReaderViewContoller: codeReaderViewContoller);
-      processingCode = false;
+      invalidCodeUserFeedback(
+        scannerViewController : scannerViewController,
+                     message  : "Invalid QR Code -- Not a Speedy Moving Inventory Code");
       return;
     }
-    //codeReaderViewContoller.messageLabel.text = "Point camera at a QRC Code"
-    let newQrcCode = FIRDatabase.database().reference(withPath: "qrcList/" + newCode)
-    newQrcCode.observe(.value, with: {(snapshot) in
-      self.itemRef.removeAllObservers();
+    let newQrCode = FIRDatabase.database().reference(withPath: "qrcList/" + newCode)
     
-      
-      self.itemRef = FIRDatabase.database().reference(withPath:"itemlists/" + self.jobKey + "/items/" + newCode)
-      let oldQrcCode = FIRDatabase.database().reference(withPath: "/qrcList/" + self.qrcCode);
-      oldQrcCode.removeValue();
-      
-      // replace in the item
-      let oldItemReference = FIRDatabase.database().reference(withPath: "/itemlists/" + self.jobKey
-        + "/items" + self.qrcCode);
-      oldItemReference.removeValue();
-      self.itemRef.setValue(self.item);
-  
-    });
-    
-
+    newQrCode.observeSingleEvent(of: .value, with: {(snapshot) in
+      if snapshot.exists(){
+        self.invalidCodeUserFeedback(
+          scannerViewController : scannerViewController,
+          message  : "QR Code is already in use.");
+        scannerViewController.showNext()
+       } else {
+        newQrCode.setValue(self.jobKey, withCompletionBlock: {(databaseError, databaseReference) in
+          self.itemRef.removeAllObservers();
+          self.itemRef = FIRDatabase.database().reference(withPath:"itemlists/" + self.jobKey + "/items/" + newCode)
+          let oldQrCode = FIRDatabase.database().reference(withPath:"qrcList/" + self.qrCode)
+          oldQrCode.removeValue()
+          
+          let oldItemReference = FIRDatabase.database().reference(withPath:"itemlists/" + self.jobKey + "/items/" + self.qrCode)
+          oldItemReference.removeValue()
+          self.itemRef.setValue(self.item.asFirebaseObject());
+          
+          scannerViewController.endScan();
+          
+          // post a message that the code has been reassigned
+          
+          let deadlineTime = DispatchTime.now() + .milliseconds(500)
+          DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
+            UiUtility.showAlert("QR Code Reassigned", message: "The QR Code has been sucessfully reassigned.", presenter: self)
+          }
+          self.setTitle(code: newCode)
+        })
+      }
+    })
   }
-  
-  
-  func readerDidCancel(_ reader: QRCodeReaderViewController) {
-    //dismiss(animated: true, completion: nil)
-    
-    reader.dismiss(animated: true, completion: nil)
-  }
-  
   
   public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
     currentLocation = manager.location?.coordinate;
-    
   }
   
   public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error){
     
   }
-
 }
