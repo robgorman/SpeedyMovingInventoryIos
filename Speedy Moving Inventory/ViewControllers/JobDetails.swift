@@ -33,8 +33,6 @@ class ItemAndKey{
 class JobDetails : UIViewController,UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, IJobConsumer, UIGestureRecognizerDelegate, IItemDeletePressed{
   
   var user : User!;
-  
-  
   var recipientListQuery : FIRDatabaseQuery!;
   
   @IBOutlet weak var labelNoItemsMessage: UILabel!
@@ -145,10 +143,10 @@ class JobDetails : UIViewController,UICollectionViewDelegateFlowLayout, UICollec
   func setupQueries(){
     let database = FIRDatabase.database();
     queries.append(SortBy(query: database.reference(withPath:"itemlists/" + jobKey + "/items")
-      .queryOrdered(byChild: "monetaryValueInverse"), sortBy: "By Value"))
+      .queryOrdered(byChild: "volumeInverse"), sortBy: "By Volume"))
     
     queries.append(SortBy(query: database.reference(withPath:"itemlists/" + jobKey + "/items")
-      .queryOrdered(byChild: "volumeInverse"), sortBy: "By Volume"))
+      .queryOrdered(byChild: "monetaryValueInverse"), sortBy: "By Value"))
 
     queries.append(SortBy(query: database.reference(withPath:"itemlists/" + jobKey + "/items")
       .queryOrdered(byChild: "category"), sortBy: "By Category"))
@@ -300,7 +298,7 @@ class JobDetails : UIViewController,UICollectionViewDelegateFlowLayout, UICollec
   
   func launchItemDetailsView(itemAndKey : ItemAndKey){
     if (job.getLifecycle() == Lifecycle.New){
-      let vc = (self.storyboard?.instantiateViewController(withIdentifier: "EditItemViewController")) as! EditItemViewController;
+      let vc = (self.storyboard?.instantiateViewController(withIdentifier: "NewItemViewController")) as! NewItemViewController;
       vc.jobKey = jobKey
       vc.qrcCode = itemAndKey.key;
       vc.companyKey = self.companyKey;
@@ -369,14 +367,16 @@ class JobDetails : UIViewController,UICollectionViewDelegateFlowLayout, UICollec
     cell.sortLabel.isHidden = false;
     switch currentQuery {
     case 0:
+      let s = String(item.getVolume()) + " ft3"
+      cell.sortLabel.attributedText = TextUtils.formFt3Superscript(text: s)
+    
+    case 1: //volume
+      
       let currencyFormatter = NumberFormatter();
       currencyFormatter.maximumFractionDigits = 2
       currencyFormatter.numberStyle = NumberFormatter.Style.currency
       
       cell.sortLabel.text = currencyFormatter.string(from: NSNumber(value:item.getMonetaryValue()))
-    case 1: //volume
-      let s = String(item.getVolume()) + " ft3"
-      cell.sortLabel.attributedText = TextUtils.formFt3Superscript(text: s)
     case 2: //category
       cell.sortLabel.text = item.category
     case 3: // scanned
@@ -432,6 +432,8 @@ class JobDetails : UIViewController,UICollectionViewDelegateFlowLayout, UICollec
     
     cell.index = indexPath.row;
     cell.callback = self;
+    
+    cell.preexistingDamageImage.isHidden = !item.getHasPreexistingDamage();
     
     return cell;
     

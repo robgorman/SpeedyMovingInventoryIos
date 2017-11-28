@@ -60,8 +60,6 @@ class SignOffViewController: UIViewController, UITextFieldDelegate, UITextViewDe
   var job : Job?
   var successfulSignoff = false;
   
- 
-  
   func updateLifecycle(job : Job){
     if job.getStorageInTransit(){
       loadedForStorageImage.isHidden = false;
@@ -196,8 +194,6 @@ class SignOffViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     loadJob();
     company = appDelegate.currentCompany;
     updateFromCompany()
-    
-    
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -330,6 +326,11 @@ class SignOffViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     print("Did pan inside")
     signHereHintLabel.isHidden = true;
     acceptButton.isEnabled = true;
+  }
+  
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    self.view.endEditing(true)
+    return false
   }
 
 }

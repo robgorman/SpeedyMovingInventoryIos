@@ -31,7 +31,7 @@ class SliderRange{
   }
 }
 
-class EditItemViewController : UIViewController,  UITextViewDelegate,  UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate,
+class NewItemViewController : UIViewController,  UITextViewDelegate,  UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate,
     UIGestureRecognizerDelegate,
     IItemDeletePressed
 {
@@ -42,8 +42,9 @@ class EditItemViewController : UIViewController,  UITextViewDelegate,  UICollect
   @IBOutlet weak var pickButton: UIButton!
   
   @IBOutlet weak var textViewDescription: UITextView!
-  @IBOutlet weak var damageDescription: UITextView!
+  @IBOutlet weak var preexistingDamageDescription: UITextView!
   // @IBOutlet weak var sliderValue: UISlider!
+  @IBOutlet weak var preexistingDamageImage: UIImageView!
   @IBOutlet weak var sliderPads: UISlider!
   @IBOutlet weak var sliderVolume: UISlider!
   @IBOutlet weak var sliderWeight: UISlider!
@@ -127,7 +128,13 @@ class EditItemViewController : UIViewController,  UITextViewDelegate,  UICollect
     super.viewWillDisappear(animated)
     if item != nil{
       item.desc = textViewDescription.text
-      item.damageDescription = damageDescription.text;
+      if preexistingDamageDescription != nil {
+        item.preexistingDamageDescription = preexistingDamageDescription.text
+      } else {
+        item.preexistingDamageDescription = ""
+      }
+      // todo why do we need this
+    
       item.specialHandling = textViewSpecialHandling.text
       itemRef.setValue(item.asFirebaseObject())
       
@@ -158,8 +165,8 @@ class EditItemViewController : UIViewController,  UITextViewDelegate,  UICollect
     textViewDescription.layer.borderColor = Colors().speedyLight.cgColor
     textViewDescription.layer.borderWidth = 1.0
     
-    damageDescription.layer.borderColor = Colors().speedyLight.cgColor
-    damageDescription.layer.borderWidth = 1.0
+    preexistingDamageDescription.layer.borderColor = Colors().speedyLight.cgColor
+    preexistingDamageDescription.layer.borderWidth = 1.0
     
     textViewSpecialHandling.layer.borderColor = Colors().speedyLight.cgColor;
     textViewSpecialHandling.layer.borderWidth = 1.0
@@ -476,10 +483,16 @@ class EditItemViewController : UIViewController,  UITextViewDelegate,  UICollect
     switchSync.isOn = syncWeightAndVolume;
     
     textViewDescription.text = item.desc!
-    damageDescription.text = item.damageDescription!
+    if item.preexistingDamageDescription != nil{
+      preexistingDamageDescription.text = item.preexistingDamageDescription!
+    } else {
+      preexistingDamageDescription.text = ""
+    }
     buttonCategory.setTitle(item.category! + "  >", for: .normal)
     buttonPackedBy.setTitle(item.packedBy!  + "  >", for: .normal)
     
+    preexistingDamageImage.isHidden = !item.getHasPreexistingDamage();
+        
     
     sliderPads.setValue(Float(item.getNumberOfPads()), animated :true)
     sliderPads.sendActions(for: .valueChanged)
@@ -507,8 +520,8 @@ class EditItemViewController : UIViewController,  UITextViewDelegate,  UICollect
   }
   
   class CategoryCallback : IndexSelected{
-    var outer : EditItemViewController
-    init(vc : EditItemViewController){
+    var outer : NewItemViewController
+    init(vc : NewItemViewController){
       outer = vc;
     }
     func indexSelected(index: Int) {
@@ -556,8 +569,8 @@ class EditItemViewController : UIViewController,  UITextViewDelegate,  UICollect
   
   
   class PackedByCallback : IndexSelected{
-    var outer : EditItemViewController
-    init(vc : EditItemViewController){
+    var outer : NewItemViewController
+    init(vc : NewItemViewController){
       outer = vc;
     }
     func indexSelected(index: Int) {
@@ -613,6 +626,14 @@ class EditItemViewController : UIViewController,  UITextViewDelegate,  UICollect
   
   public func textViewDidChange(_ textView: UITextView){
     // fair enough
+    // if the pre-existing damage description is changed then light up the info icon
+    if preexistingDamageDescription == textView{
+      if (preexistingDamageDescription.text.characters.count > 0){
+        preexistingDamageImage.isHidden = false;
+      } else {
+        preexistingDamageImage.isHidden = true;
+      }
+    }
   }
 
   public func textViewDidChangeSelection(_ textView: UITextView)
@@ -697,9 +718,7 @@ class EditItemViewController : UIViewController,  UITextViewDelegate,  UICollect
     
     cell.index = indexPath.row;
     cell.callback = self;
-    
-
-    
+  
     return cell;
     
   }
@@ -895,8 +914,8 @@ class EditItemViewController : UIViewController,  UITextViewDelegate,  UICollect
   }
   
   class PickedCallback : IMovingItemPicked{
-    var outer : EditItemViewController
-    init(vc : EditItemViewController){
+    var outer : NewItemViewController
+    init(vc : NewItemViewController){
       outer = vc;
     }
     func picked(_ description: MovingItemDataDescription, category : Category) {
@@ -938,11 +957,10 @@ class EditItemViewController : UIViewController,  UITextViewDelegate,  UICollect
     item.setIsDisassembled(value: sender.isOn);
   }
   
-  
   func enableUserInterface(){
     switchIsBox.isEnabled = true;
     textViewDescription.isEditable = true;
-    damageDescription.isEditable = true;
+    preexistingDamageDescription.isEditable = true;
     pickButton.isEnabled = true;
     switchDisassembled.isEnabled = true;
     buttonCategory.isEnabled = true;

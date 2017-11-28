@@ -30,6 +30,7 @@ class ItemCollectionCell : UICollectionViewCell {
   @IBOutlet weak var itemDescription: UILabel!
   @IBOutlet weak var sortLabel: UILabel!
  
+  @IBOutlet weak var preexistingDamageImage: UIImageView!
   @IBOutlet weak var deleteButton: UIButton!
   @IBAction func deletePressed(_ sender: Any) {
     callback.deleteItem(index);

@@ -44,6 +44,8 @@ class Item : FirebaseDataObject {
   var numberOfPads: NSNumber?
   var numberOfPadsInverse: NSNumber?
   var packedBy : String?
+  // this can be null; 
+  var preexistingDamageDescription : String?
   var specialHandling : String?
   var uidOfCreator : String?
   var volume: NSNumber?
@@ -93,6 +95,7 @@ class Item : FirebaseDataObject {
     self.setPackedBy(packedBy: packedBy)
     self.imageReferences = NSMutableDictionary()
     self.claimNumber = ""
+    self.preexistingDamageDescription = ""
     self.setHasClaim(value: false)
     self.setIsClaimActive(value: false)
     self.insurance = "None"
@@ -114,6 +117,7 @@ class Item : FirebaseDataObject {
     fbo["description"] = desc
     fbo["hasClaim"] = hasClaim
     fbo["hasClaimInverse"] = hasClaimInverse
+    fbo["preexistingDamageDescription"] = preexistingDamageDescription
     fbo["imageReferences"] = imageReferences
     fbo["insurance"] = insurance
     fbo["isBox"] = isBox
@@ -147,6 +151,15 @@ class Item : FirebaseDataObject {
   func getHasClaimInverse() -> Bool {return ((hasClaimInverse?.boolValue)!)}
   func getIsBox() -> Bool {return ((isBox?.boolValue)!)}
   func getIsClaimActive() -> Bool {return ((isClaimActive?.boolValue)!)}
+  
+  func getHasPreexistingDamage() -> Bool
+  {
+      if preexistingDamageDescription == nil{
+        preexistingDamageDescription = "";
+      }
+      return ((preexistingDamageDescription?.characters.count)! > 0)
+  }
+  
   func getClaimActiveInverse() -> Bool {return ((claimActiveInverse?.boolValue)!)}
   func getIsScanned() -> Bool {return ((isScanned?.boolValue)!)}
   func getIsScannedInverse() -> Bool {return ((isScannedInverse?.boolValue)!)}

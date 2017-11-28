@@ -29,6 +29,8 @@ class ItemClaimViewController : UIViewController, UITextFieldDelegate, UITextVie
   @IBOutlet weak var isDamagedSwitch: UISwitch!
   @IBOutlet weak var claimNumberTextField: UITextField!
   @IBOutlet weak var damageDescriptionTextView: UITextView!
+  @IBOutlet weak var preexistingDamageTextView: UITextView!
+  @IBOutlet weak var preexistingImageView: UIImageView!
   @IBOutlet weak var imageCollectionView: UICollectionView!
   @IBOutlet weak var takePictureButton: UIButton!
   // the two items below must be provided by caller
@@ -92,6 +94,7 @@ class ItemClaimViewController : UIViewController, UITextFieldDelegate, UITextVie
   func updateItemFromControls(){
     item.claimNumber = claimNumberTextField.text
     item.damageDescription = damageDescriptionTextView.text
+    
     if item.getIsScanned() == false && scanOverrideSwitch.isOn{
       // we have a manual scan
       var latitude = 0.0;
@@ -178,7 +181,17 @@ class ItemClaimViewController : UIViewController, UITextFieldDelegate, UITextVie
     }
 
     descriptionTextView.text = item.desc
-    valueLabel.text = "$" + String(item.getMonetaryValue())
+    
+        
+    if item.getHasPreexistingDamage(){
+      preexistingDamageTextView.text = item.preexistingDamageDescription
+      preexistingImageView.isHidden = false;
+    } else {
+      preexistingDamageTextView.text = "None";
+      preexistingImageView.isHidden = true;
+    }
+   
+    valueLabel.text = "$" + String(format:"%.2f", item.getMonetaryValue())
     numberOfPadsLabel.text = String(item.getNumberOfPads());
     categoryLabel.text = item.getCategory().rawValue
     packedByLabel.text = item.getPackedBy().rawValue
@@ -409,6 +422,7 @@ class ItemClaimViewController : UIViewController, UITextFieldDelegate, UITextVie
     scanOverrideSwitch.isEnabled = true;
     damageDescriptionTextView.isEditable = true;
     takePictureButton.isEnabled = true;
+    
   }
   
   func reassignQrc(){

@@ -559,7 +559,7 @@ class JobViewController : UIViewController, ScannerViewControllerDelegate, CLLoc
   }
   
   func createNewItem(job : Job, code : String, scannerViewController: ScannerViewController, itemIsOutOfPhase : Bool){
-    let vc = (self.storyboard?.instantiateViewController(withIdentifier: "EditItemViewController")) as! EditItemViewController;
+    let vc = (self.storyboard?.instantiateViewController(withIdentifier: "NewItemViewController")) as! NewItemViewController;
     vc.jobKey = jobKey
     vc.qrcCode = code;
     vc.companyKey = self.companyKey
@@ -571,7 +571,7 @@ class JobViewController : UIViewController, ScannerViewControllerDelegate, CLLoc
   }
   
   func editItem(job : Job, code : String, item : Item, scannerViewController: ScannerViewController){
-    let vc = (self.storyboard?.instantiateViewController(withIdentifier: "EditItemViewController")) as! EditItemViewController;
+    let vc = (self.storyboard?.instantiateViewController(withIdentifier: "NewItemViewController")) as! NewItemViewController;
     vc.jobKey = jobKey
     vc.qrcCode = code;
     vc.companyKey = self.companyKey
