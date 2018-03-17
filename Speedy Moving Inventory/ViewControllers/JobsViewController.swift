@@ -33,6 +33,7 @@ class JobsViewController : UIViewController, UITableViewDelegate, UITableViewDat
     jobRef.observe(FIRDataEventType.value, with: {(snapshot) in
       print(snapshot.childrenCount);
       self.jobs = [:]
+      self.jobKeysInOrder = []
       let enumerator = snapshot.children;
       //if snapshot.childrenCount > 0 {
       //  self.labelNoJobsMessage.isHidden = true
