@@ -925,7 +925,8 @@ class NewItemViewController : UIViewController,  UITextViewDelegate,  UICollecti
       outer.item.desc = description.itemName
       
       outer.item.setVolume(volume: description.getCubicFeet())
-      outer.item.setVolume(volume: description.getCubicFeet() * Float(poundsPerCubicFoot!));
+
+      outer.item.setWeightLbs(weightLbs: description.getCubicFeet() * Float(poundsPerCubicFoot!));
       outer.item.setIsBox(value: description.getIsBox());
       // TODO set category
       outer.item.setCategory(category: category)

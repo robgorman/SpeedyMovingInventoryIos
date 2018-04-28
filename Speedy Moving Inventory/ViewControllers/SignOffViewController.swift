@@ -237,7 +237,9 @@ class SignOffViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     // TODO
     savingView.isHidden = false;
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    let path = "signatures/" + companyKey + "/" + jobKey + "/" + entryLifecycle.rawValue
+    let pathPart1 = "signatures/" + companyKey + "/"
+    let pathPart2 = jobKey + "/" + entryLifecycle.rawValue
+    let path = pathPart1 + pathPart2
 
     //let storage = FIRStorage.storage();
     //let rref = storage.reference(forURL: appDelegate.storageUrl!)
